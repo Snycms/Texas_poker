@@ -1,8 +1,10 @@
-#include "Jogadores.hpp" 
-#include "Cartas.hpp"
+#include "Baralho.hpp"
+#include "Carta.hpp"
+#include "Computador.hpp" 
+#include "Jogador.hpp"
+#include "Mao.hpp"
+#include "Poker_Game.hpp"
 
-#include <iostream>
-
-int main{
+int main(){
     
 }

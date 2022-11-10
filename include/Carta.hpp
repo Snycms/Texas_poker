@@ -6,11 +6,11 @@
 class Carta{
     private:
         int _valor;
-        std::string _tipo;
+        std::string _naipe;
         bool _esta_virada;
 
     public:
-        Carta(int valor; std::string tipo; bool esta_virada);
+        Carta(int valor; std::string naipe; bool esta_virada);
 
         int comparar_carta();
 
@@ -19,7 +19,7 @@ class Carta{
         //Getters
 
         int getValor();
-        std::string getTipo();
+        std::string getNaipe();
         bool getEsta_virada
 
 }

@@ -8,6 +8,12 @@
 #include <vector>
 
 class Baralho{
-
+  private:
+    std::vector<Carta> _baralho;
+  
+  public:
+    Baralho();
+    ~Baralho();
+    void embaralhar(Baralho _baralho);
 }
 #endif

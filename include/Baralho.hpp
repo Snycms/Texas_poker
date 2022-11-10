@@ -15,5 +15,15 @@ class Baralho{
     Baralho();
     ~Baralho();
     void embaralhar(Baralho _baralho);
+    
+    //retorna objetos Carta
+    Carta carta_topo();
+  
+    Carta flop(Baralho _baralho);
+    Carta turn(Baralho _baralho);
+    Carta river(Baralho _baralho);
+  
+    //Getter
+    Carta getCarta();
 }
 #endif

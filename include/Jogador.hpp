@@ -5,36 +5,31 @@
 
 #include <string>
 
-
-
 class Jogador{
     private:
         std::string _nome;
         int _num_vitoria;
         int _fichas;
-        int _aposta;
-        //Mao
+        Mao _mao;
         bool esta_jogando;
+        std::string _tipo; //Pode ser Dealer, Small Blind ou Big Blind
     
     public:
         int aposta(int valor);
         int passar_vez();
-         
+    
+        
+        std::string getNome(); //Get nome do Jogador
+        void setNome(std::string nome); //Set nome do Jogador
 
+        int getNum_vitoria(); //Get numero de vitorias do Jogador
+        void SetNum_vitoria(int num_vitoria); //Set numero de vitorias do Jogador
 
-        //GETTERS E SETTERS
+        int getFichas(); //Get numero de fichas do Jogador
+        void setFichas(int fichas); //Set numero de fichas do Jogador
 
-        std::string getNome();
-        void setNome(std::string nome);
-
-        int getNum_vitoria();
-        void SetNum_vitoria(int num_vitoria);
-
-        int getFichas();
-        void setFichas(int fichas);
-
-        bool getEsta_jogando();
-        void setEsta_jogando(bool esta_jogando);
+        bool getEsta_jogando(); //Get situação do Jogador
+        void setEsta_jogando(bool esta_jogando); //Set situação do Jogador
 }
 
 #endif

@@ -14,16 +14,20 @@ class Baralho{
   public:
     Baralho();
     ~Baralho();
-    void embaralhar(Baralho _baralho);
+    void embaralhar(Baralho &_baralho);
     
-    //retorna objetos Carta
+    //Retorna primeira carta de cima do baralho 
     Carta carta_topo();
+
+    //Adiciona 3 cartas à mesa e à mao dos jogadores 
+    void flop(Baralho &_baralho); 
+    //Adiciona 1 carta à mesa e à mao dos jogadores
+    void turn(Baralho &_baralho); 
+    //Adiciona 1 carta à mesa e à mao dos jogadores
+    void river(Baralho &_baralho); 
   
-    Carta flop(Baralho _baralho);
-    Carta turn(Baralho _baralho);
-    Carta river(Baralho _baralho);
-  
-    //Getter
-    Carta getCarta();
+    //Get Carta
+    Carta getCarta(); 
 }
+
 #endif

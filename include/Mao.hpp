@@ -5,9 +5,10 @@
 
 class Mao{
   private:
-    std::vector<Carta*> _mao;
+    std::vector<Carta> _mao;
   
   public:
-    int comparar_mao(std::vector<Carta*> pri_mao; std::vector<Carta*> sec_mao);
+    int comparar_mao(std::vector<Carta> pri_mao; std::vector<Carta> seg_mao);
+}
 
 #endif

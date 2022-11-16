@@ -27,26 +27,26 @@ void Baralho::embaralha(){
     std::shuffle(_baralho.begin(), _baralho.end(), std::default_random_engine(semente));
 }
     
-Carta Baralho::carta_topo(){return _baralho.at(_baralho.size()-1);}
+Carta Baralho::carta_topo(){return _baralho.back();}
 
 void Baralho::remove_carta(){_baralho.erase(_baralho.end());}
 
-void Baralho::distribui_carta(std::string jogada, Baralho &baralho, Mao &mao){
+void Baralho::distribui_carta(std::string jogada, Mao &mao){
     if(jogada == "DAR CARTAS"){
         for(int i=0; i<2; ++i){
-            mao.adiciona_carta(baralho.carta_topo());
-            baralho.remove_carta();
+            mao.adiciona_carta(_baralho.carta_topo());
+            _baralho.remove_carta();
         }
     }
     else if(jogada == "FLOP"){
         for(int i=0; i<3; ++i){
-            mao.adiciona_carta(baralho.carta_topo());
-            baralho.remove_carta();
+            mao.adiciona_carta(_baralho.carta_topo());
+            _baralho.remove_carta();
         }
     }
     else if(jogada == "TURN" or jogada == "RIVER"){
-        mao.adiciona_carta(baralho.carta_topo());
-        baralho.remove_carta();
+        mao.adiciona_carta(_baralho.carta_topo());
+        _baralho.remove_carta();
     }
 }
 

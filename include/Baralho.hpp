@@ -24,7 +24,7 @@ class Baralho{
     void remove_carta();
 
     //Da as primeiras 2 cartas, Flop(3 cartas), Turn(1 cartas) e o River(1 carta)
-    void distribui_carta(std::string jogada, Baralho &baralho, Mao &mao);
+    void distribui_carta(std::string jogada, Mao &mao);
 };
 
 #endif

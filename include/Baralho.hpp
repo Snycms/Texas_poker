@@ -14,20 +14,17 @@ class Baralho{
   public:
     Baralho();
     ~Baralho();
-    void embaralhar(Baralho &_baralho);
+    
+    void embaralha();
     
     //Retorna primeira carta de cima do baralho 
     Carta carta_topo();
 
-    //Adiciona 3 cartas à mesa e à mao dos jogadores 
-    void flop(Baralho &_baralho); 
-    //Adiciona 1 carta à mesa e à mao dos jogadores
-    void turn(Baralho &_baralho); 
-    //Adiciona 1 carta à mesa e à mao dos jogadores
-    void river(Baralho &_baralho); 
-  
-    //Get Carta
-    Carta getCarta(); 
-}
+    //Remove carta do topo
+    void remove_carta();
+
+    //Da as primeiras 2 cartas, Flop(3 cartas), Turn(1 cartas) e o River(1 carta)
+    void distribui_carta(std::string jogada, Baralho &baralho, Mao &mao);
+};
 
 #endif

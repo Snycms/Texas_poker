@@ -27,6 +27,12 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "chrono": "cpp",
+        "cmath": "cpp",
+        "ctime": "cpp",
+        "deque": "cpp",
+        "numeric": "cpp",
+        "ratio": "cpp"
     }
 }

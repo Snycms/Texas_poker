@@ -30,6 +30,6 @@ class Jogador{
 
         bool getEsta_jogando(); //Get situação do Jogador
         void setEsta_jogando(bool esta_jogando); //Set situação do Jogador
-}
+};
 
 #endif

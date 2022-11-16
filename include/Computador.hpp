@@ -8,9 +8,16 @@ class Computador: public Jogador{
         int _dificuldade;
     
     public: 
+        Computador();
+        
+        ~Computador();
+
         void fazer_jogada();
 
+        //Get dificuldade do computador
         int getDificuldade();
-}
+        //Set dificuldade do computador
+        void setDificuldade(int dificuldade);
+};
 
 #endif

@@ -11,20 +11,20 @@ ${BUILD_DIR}/${TARGET}: ${BUILD_DIR}/Baralho.o ${BUILD_DIR}/Carta.o ${BUILD_DIR}
 
 #---------
 
-${BUILD_DIR}/Baralho.o: ${INCLUDE_DIR}/Baralho.hpp ${SRC_DIR}/Baralho.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Baralho.cpp -o ${BUILD_DIR}/Baralho.o
-
 ${BUILD_DIR}/Carta.o: ${INCLUDE_DIR}/Carta.hpp ${SRC_DIR}/Carta.cpp
 	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Carta.cpp -o ${BUILD_DIR}/Carta.o
+
+${BUILD_DIR}/Mao.o: ${INCLUDE_DIR}/Mao.hpp ${SRC_DIR}/Mao.cpp
+	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Mao.cpp -o ${BUILD_DIR}/Mao.o
+
+${BUILD_DIR}/Baralho.o: ${INCLUDE_DIR}/Baralho.hpp ${SRC_DIR}/Baralho.cpp
+	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Baralho.cpp -o ${BUILD_DIR}/Baralho.o
 
 ${BUILD_DIR}/Computador.o: ${INCLUDE_DIR}/Computador.hpp ${SRC_DIR}/Computador.cpp
 	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Computador.cpp -o ${BUILD_DIR}/Computador.o
 
 ${BUILD_DIR}/Jogador.o: ${INCLUDE_DIR}/Jogador.hpp ${SRC_DIR}/Jogador.cpp
 	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Jogador.cpp -o ${BUILD_DIR}/Jogador.o
-
-${BUILD_DIR}/Mao.o: ${INCLUDE_DIR}/Mao.hpp ${SRC_DIR}/Mao.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Mao.cpp -o ${BUILD_DIR}/Mao.o
 
 ${BUILD_DIR}/Poker_Game.o: ${INCLUDE_DIR}/Poker_Game.hpp ${SRC_DIR}/Poker_Game.cpp
 	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Poker_Game.cpp -o ${BUILD_DIR}/Poker_Game.o

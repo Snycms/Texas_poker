@@ -22,7 +22,7 @@ Carta Mao::maior_carta(){
 }
 
 int Mao::valor_mao(){
-
+    if()
 }
 
 #endif

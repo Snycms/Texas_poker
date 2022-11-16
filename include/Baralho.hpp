@@ -2,7 +2,7 @@
 #define BARALHO_HPP
 
 #include "Carta.hpp"
-#include "Jogador.hpp"
+#include "Mao.hpp"
 
 #include <string>
 #include <vector>

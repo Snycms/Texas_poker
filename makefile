@@ -1,40 +1,36 @@
 CC := g++
-CFLAGS := -std=c++11 -Wall
-TARGET := program
+FLAGS := -I include/ -Wall
+BUILD_DIR := build/
+SRC_DIR := src/
+TARGET := main.out
 
-BUILD_DIR := ./build
-SRC_DIR := ./src
-INCLUDE_DIR := ./include
+main.out: Carta.o Mao.o Baralho.o Jogador.o Computador.o Poker_Game.o
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(FLAGS) build/Carta.o
 
-${BUILD_DIR}/${TARGET}: ${BUILD_DIR}/Baralho.o ${BUILD_DIR}/Carta.o ${BUILD_DIR}/Computador.o ${BUILD_DIR}/Jogador.o ${BUILD_DIR}/Mao.o ${BUILD_DIR}/Poker_Game.o ${BUILD_DIR}/main.o
-	${CC} ${CFLAGS} -o ${BUILD_DIR}/${TARGET} ${BUILD_DIR}/*.o
+Carta.o: 
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(FLAGS) -c src/Carta.cpp -o build/Carta.o
 
-#---------
+Mao.o: 
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(FLAGS) -c src/Mao.cpp -o build/Mao.o
 
-${BUILD_DIR}/Carta.o: ${INCLUDE_DIR}/Carta.hpp ${SRC_DIR}/Carta.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Carta.cpp -o ${BUILD_DIR}/Carta.o
+Baralho.o:
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(FLAGS) -c src/Baralho.cpp -o build/Baralho.o
 
-${BUILD_DIR}/Mao.o: ${INCLUDE_DIR}/Mao.hpp ${SRC_DIR}/Mao.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Mao.cpp -o ${BUILD_DIR}/Mao.o
+Jogador.o:	
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(FLAGS) -c src/Jogador.cpp -o build/Jogador.o
 
-${BUILD_DIR}/Baralho.o: ${INCLUDE_DIR}/Baralho.hpp ${SRC_DIR}/Baralho.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Baralho.cpp -o ${BUILD_DIR}/Baralho.o
+Computador: Jogador.o
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(FLAGS) -c src/Computador.cpp -o build/Jogador.o
 
-${BUILD_DIR}/Computador.o: ${INCLUDE_DIR}/Computador.hpp ${SRC_DIR}/Computador.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Computador.cpp -o ${BUILD_DIR}/Computador.o
+Poker_Game.o: 
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(FLAGS) -c src/Poker_Game.cpp -o build/Poker_Game.o
 
-${BUILD_DIR}/Jogador.o: ${INCLUDE_DIR}/Jogador.hpp ${SRC_DIR}/Jogador.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Jogador.cpp -o ${BUILD_DIR}/Jogador.o
-
-${BUILD_DIR}/Poker_Game.o: ${INCLUDE_DIR}/Poker_Game.hpp ${SRC_DIR}/Poker_Game.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/Poker_Game.cpp -o ${BUILD_DIR}/Poker_Game.o
-
-#---------
-
-${BUILD_DIR}/main.o: ${INCLUDE_DIR}/Baralho.hpp ${INCLUDE_DIR}/Carta.hpp ${INCLUDE_DIR}/Computador.hpp ${INCLUDE_DIR}/Jogador.hpp ${INCLUDE_DIR}/Mao.hpp ${INCLUDE_DIR}/Poker_Game.hpp ${SRC_DIR}/main.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR}/ -c ${SRC_DIR}/main.cpp -o ${BUILD_DIR}/main.o
-
-# Rule for cleaning files generated during compilation.
-# Call 'make clean' to use it
 clean:
-	rm -f ${BUILD_DIR}/* 
+	$(RM) -r $(BUILD_DIR)/* $(TARGET)

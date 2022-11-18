@@ -60,7 +60,6 @@ void Jogador::setNome(std::string nome){_nome = nome;}
 int Jogador::getFichas(){return _fichas;} 
 void Jogador::setFichas(int fichas){_fichas = fichas;} 
 
-//Erro: cannot bind non-const lvalue reference of type ‘Mao&’ to an rvalue of type ‘Mao’
 Mao Jogador::getMao(){return _mao;}
 
 int Jogador::getNum_vitoria(){return _num_vitoria;} 

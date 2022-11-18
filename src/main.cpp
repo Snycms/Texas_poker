@@ -15,8 +15,6 @@ int main (){
     
     Jogador jogador("Ernani");
     
-    Mao mao = jogador.getMao_jogador();
-    
     for(int i=0; i<7; ++i){
         baralho.distribui_carta("RIVER", jogador.getMao_jogador());
     }

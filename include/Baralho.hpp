@@ -25,6 +25,9 @@ class Baralho{
 
     //Da as primeiras 2 cartas, Flop(3 cartas), Turn(1 cartas) e o River(1 carta)
     void distribui_carta(std::string jogada, Mao &mao);
+
+    //TESTE ONLINE GDB
+    void imprime_baralho();
 };
 
 #endif

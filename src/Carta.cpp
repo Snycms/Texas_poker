@@ -3,6 +3,9 @@
 
 #include "Carta.hpp"
 
+//TESTE ONLINE GDB
+#include <iostream>
+
 Carta::Carta(int valor, std::string nome, std::string naipe, bool rosto_baixo){
     setValor(valor);
     setNome(nome);
@@ -19,6 +22,12 @@ void Carta::virar(){
     }
 }
 
+//TESTE ONLINE GDB
+void Carta::exibe_carta(){
+    std::cout << "Valor: " << getValor() << " - ";
+    std::cout << "Nome: " << getNome() << " - ";
+    std::cout << "Naipe: " << getNaipe() << std::endl;
+}
 
 //GETTERS E SETTERS ---------------------------------------
 

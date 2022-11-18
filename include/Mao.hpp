@@ -23,6 +23,9 @@ class Mao{
 
     //Retorna valor da mao do jogador
     int valor_mao(); 
+    
+    //TESTE ONLINE GDB
+    void exibe_mao();
 
 };
 

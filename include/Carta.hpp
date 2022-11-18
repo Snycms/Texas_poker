@@ -17,6 +17,9 @@ class Carta{
 
         //Vira a carta - Semelhante ao setRosto_baixo
         void virar();
+        
+        //TESTE ONLINE GDB
+        void exibe_carta();
 
         //GETTERS E SETTERS ---------------------------------------
 

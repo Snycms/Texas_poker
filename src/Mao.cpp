@@ -5,6 +5,9 @@
 #include "Carta.hpp"
 #include "Baralho.hpp"
 
+//TESTE ONLINE GDB
+#include <iostream>
+
 Mao::Mao(){std::vector<Carta> _mao;}
 
 Mao::~Mao(){_mao.clear();}
@@ -22,7 +25,23 @@ Carta Mao::maior_carta(){
 }
 
 int Mao::valor_mao(){
-    if()
+    //Cartas recebidas pelo jogador
+    std::vector<Carta> cartas_recebidas = {_mao.front(), _mao.at(1)};
+    
+    std::vector<Carta> mao_mesa = _mao;
+    mao_mesa.erase(mao_mesa.begin(), mao_mesa.begin()+2);
+    
+    std::cout << "Cartas copia: \n";
+    for(int i=0; i<7; ++i){
+        mao_mesa.at(i).exibe_carta();
+    }
+}
+
+//TESTE ONLINE GDB
+void Mao::exibe_mao(){
+    for(std::vector<Carta>::iterator it = _mao.begin(); it != _mao.end(); ++it){
+        it->exibe_carta();
+    }
 }
 
 #endif

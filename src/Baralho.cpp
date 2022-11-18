@@ -37,10 +37,8 @@ void Baralho::remove_carta(){_baralho.erase(_baralho.end());}
 
 void Baralho::distribui_carta(std::string jogada, Mao &mao){
     if(jogada == "DAR CARTAS"){
-        for(int i=0; i<2; ++i){
-            mao.adiciona_carta(carta_topo());
-            remove_carta();
-        }
+        mao.adiciona_carta(carta_topo());
+        remove_carta();
     }
     else if(jogada == "FLOP"){
         for(int i=0; i<3; ++i){
@@ -48,7 +46,7 @@ void Baralho::distribui_carta(std::string jogada, Mao &mao){
             remove_carta();
         }
     }
-    else if(jogada == "TURN" or jogada == "RIVER"){
+    else if(jogada == "TURN" || jogada == "RIVER"){
         mao.adiciona_carta(carta_topo());
         remove_carta();
     }

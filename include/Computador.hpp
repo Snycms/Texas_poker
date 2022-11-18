@@ -8,7 +8,7 @@ class Computador: public Jogador{
         int _dificuldade;
     
     public: 
-        Computador();
+        Computador(int dificuldade);
         
         ~Computador();
 

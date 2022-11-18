@@ -3,7 +3,7 @@
 
 #include "Computador.hpp"
 
-Computador::Computador(){int _dificuldade;}
+Computador::Computador(int dificuldade){setDificuldade(dificuldade);}
 
 Computador::~Computador(){}
 

@@ -2,9 +2,7 @@
 #define JOGADOR_CPP
 
 #include "Jogador.hpp"
-#include "Carta.hpp"
 #include "Mao.hpp"
-#include "Baralho.hpp"
 
 Jogador::Jogador(std::string nome){
     setEsta_jogando(true);
@@ -26,6 +24,7 @@ int Jogador::desistir(int jogador_atual){
 
 void Jogador::limpar(){}
 
+//Erro: o identificador não esta definido (setFichas() e getFichas())
 int aposta(std::string tipo_aposta, int valor_aposta){
     //Aposta normal
     if(tipo_aposta == "Aposta"){
@@ -61,6 +60,7 @@ void Jogador::setNome(std::string nome){_nome = nome;}
 int Jogador::getFichas(){return _fichas;} 
 void Jogador::setFichas(int fichas){_fichas = fichas;} 
 
+//Erro: cannot bind non-const lvalue reference of type ‘Mao&’ to an rvalue of type ‘Mao’
 Mao Jogador::getMao(){return _mao;}
 
 int Jogador::getNum_vitoria(){return _num_vitoria;} 

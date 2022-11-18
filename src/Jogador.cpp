@@ -26,13 +26,8 @@ void Jogador::limpar(){}
 
 //Erro: o identificador não esta definido (setFichas() e getFichas())
 int aposta(std::string tipo_aposta, int valor_aposta){
-    //Aposta normal
-    if(tipo_aposta == "Aposta"){
-        setFichas(getFichas() - valor_aposta);
-        return valor_aposta;
-    }
-    //Aumenta a aposta
-    else if(tipo_aposta == "Aumentar"){
+    //Aposta normal - Aumenta a aposta
+    if(tipo_aposta == "Aposta" || tipo_aposta == "Aumentar"){
         setFichas(getFichas() - valor_aposta);
         return valor_aposta;
     }

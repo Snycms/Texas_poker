@@ -19,13 +19,18 @@ class Mao{
     void adiciona_carta(Carta carta); 
 
     //Compara as cartas da mao de um jogador e retorna a maior
-    Carta maior_carta(); 
+    Carta &maior_carta(); 
 
     //Retorna valor da mao do jogador
     int valor_mao(); 
     
     //TESTE ONLINE GDB
     void exibe_mao();
+    
+    //GETTERS E SETTERS ---------------------------------------
+    
+    //Get mao
+    std::vector<Carta> &getMao();
 
 };
 

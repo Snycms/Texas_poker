@@ -14,6 +14,8 @@ class Computador: public Jogador{
 
         void fazer_jogada();
 
+        //GETTERS E SETTERS ---------------------------------------
+
         //Get dificuldade do computador
         int getDificuldade();
         //Set dificuldade do computador

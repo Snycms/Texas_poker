@@ -11,6 +11,7 @@
 
 Poker_Game::Poker_Game(){
     Jogador _jogador[4];
+    int POT = 0;
     int _jogador_atual = 0;
     Baralho _baralho;
     int _rodada = 0;

@@ -10,6 +10,8 @@
 class Poker_Game{
     private:
         Jogador _jogador[4];
+        //Premio do vencedor(Soma das apostas)
+        int POT;
         int _jogador_atual;
         Baralho _baralho;
         int _rodada;

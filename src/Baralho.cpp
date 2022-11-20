@@ -27,28 +27,32 @@ Baralho::Baralho(){
 Baralho::~Baralho(){_baralho.clear();}
 
 void Baralho::embaralha(){
-    //unsigned int semente = std::chrono::system_clock::now().time_since_epoch().count();
-    std::shuffle(_baralho.begin(), _baralho.end(), std::default_random_engine(1));
+    unsigned int semente = std::chrono::system_clock::now().time_since_epoch().count();
+    std::shuffle(_baralho.begin(), _baralho.end(), std::default_random_engine(0));
+    _baralho.erase(_baralho.begin(), _baralho.end() - 13);
 }
     
-Carta Baralho::carta_topo(){return _baralho.back();}
+Carta Baralho::carta_topo(int posicao){return _baralho.at((_baralho.size()-1) - posicao);}
 
-void Baralho::remove_carta(){_baralho.erase(_baralho.end());}
+void Baralho::remove_carta(std::string jogada){
+    if(jogada == "FLOP"){
+        _baralho.erase(_baralho.end()-3, _baralho.end());
+    }
+    
+    else if(jogada == "DAR CARTAS" || jogada == "TURN" || jogada == "RIVER"){
+        _baralho.erase(_baralho.end());
+    }
+    
+}
 
 void Baralho::distribui_carta(std::string jogada, Mao &mao){
-    if(jogada == "DAR CARTAS"){
-        mao.adiciona_carta(carta_topo());
-        remove_carta();
-    }
-    else if(jogada == "FLOP"){
-        for(int i=0; i<3; ++i){
-            mao.adiciona_carta(carta_topo());
-            remove_carta();
+    if(jogada == "FLOP"){
+        for(int j=0; j<3; ++j){
+            mao.adiciona_carta(carta_topo(j));
         }
     }
-    else if(jogada == "TURN" || jogada == "RIVER"){
-        mao.adiciona_carta(carta_topo());
-        remove_carta();
+    else if(jogada == "DAR CARTAS" || jogada == "TURN" || jogada == "RIVER"){
+        mao.adiciona_carta(carta_topo(0));
     }
 }
 
@@ -57,7 +61,7 @@ void Baralho::imprime_baralho(){
     for(std::vector<Carta>::iterator it = _baralho.begin(); it != _baralho.end(); ++it){
         it->exibe_carta();
     }
-    std::cout << _baralho.size();
+    std::cout << _baralho.size() << std::endl;
 }
 
 #endif

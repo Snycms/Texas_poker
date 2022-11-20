@@ -24,19 +24,13 @@ class Carta{
         //GETTERS E SETTERS ---------------------------------------
 
         //Get valor da Carta
-        int getValor(); 
-        //Set valor da Carta
-        void setValor(int valor);
+        int getValor();
 
         //Get nome da Carta
         std::string getNome();
-        //Set nome da Carta
-        void setNome(std::string nome);
 
         //Get naipe da Carta
         std::string getNaipe();
-        //Set naipe da Carta
-        void setNaipe(std::string naipe);
 
         //Get se a Carta esta virada
         bool getRosto_baixo(); 

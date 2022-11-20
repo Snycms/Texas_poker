@@ -12,12 +12,11 @@ class Jogador{
         int _fichas;
         Mao _mao;
         int _num_vitoria;
-
         //Pode ser Dealer, Small Blind ou Big Blind
         std::string _tipo; 
     
     public:
-        Jogador(std::string nome);
+        Jogador();
         ~Jogador();
         
         int passar_vez(int jogador_atual);
@@ -30,6 +29,9 @@ class Jogador{
         //All-in(Aposta tudo)
 
         int aposta(std::string tipo_aposta, int valor_aposta);
+        
+        //TESTE GDB ONLINE
+        void exibe_jogador();
         
         //GETTERS E SETTERS ---------------------------------------
     
@@ -53,13 +55,15 @@ class Jogador{
         //Set numero de vitorias do Jogador
         void setNum_vitoria(int num_vitoria); 
 
-        //Get mao do Jogador
-        Mao getMao();
+        //Get objeto mao do Jogador
+        Mao &getObjeto_mao_jogador();
+        //Get vector mao do Jogador
+        std::vector<Carta> &getVector_mao_jogador();
     
         //Get tipo de Jogador(Dealer, Small Blind ou Big Blind)
         std::string getTipo();
         //Set tipo de Jogador(Dealer, Small Blind ou Big Blind)
-        void setTipo(std::string nome);
+        void setTipo(std::string tipo);
 };
 
 #endif

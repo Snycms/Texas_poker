@@ -2,20 +2,20 @@
 #define JOGADOR_CPP
 
 #include "Jogador.hpp"
-#include "Carta.hpp"
 #include "Mao.hpp"
-#include "Baralho.hpp"
 
-Jogador::Jogador(std::string nome){
+#include <iostream>
+
+Jogador::Jogador(){
     setEsta_jogando(true);
     setNome(nome);
     setFichas(100);
     Mao _mao;
     setNum_vitoria(0);
-    setTipo("Nenhum");
+    setTipo("");
 }
         
-Jogador::~Jogador(){_mao.~Mao();}
+Jogador::~Jogador(){getObjeto_mao_jogador().~Mao();}
         
 int Jogador::passar_vez(int jogador_atual){return jogador_atual + 1;}
 
@@ -24,30 +24,43 @@ int Jogador::desistir(int jogador_atual){
     return jogador_atual + 1;
 }
 
-void Jogador::limpar(){}
+void Jogador::limpar(){
+    setEsta_jogando(true);
+    setFichas(100);
+    getVector_mao_jogador().erase(getVector_mao_jogador().begin(), getVector_mao_jogador().end());
+    setTipo("");
+}
 
-int aposta(std::string tipo_aposta, int valor_aposta){
-    //Aposta normal
-    if(tipo_aposta == "Aposta"){
-        setFichas(getFichas() - valor_aposta);
-        return valor_aposta;
-    }
-    //Aumenta a aposta
-    else if(tipo_aposta == "Aumentar"){
+int Jogador::aposta(std::string tipo_aposta, int valor_aposta){
+    //Aposta normal - Aumenta a aposta
+    if(tipo_aposta == "APOSTA" || tipo_aposta == "AUMENTAR"){
         setFichas(getFichas() - valor_aposta);
         return valor_aposta;
     }
     //Aposta mesma quantidade que o ultimo jogador
-    else if(tipo_aposta == "Call"){
+    else if(tipo_aposta == "CALL"){
         setFichas(getFichas() - valor_aposta);
         return valor_aposta;
     }
     //All-in(Aposta tudo)
-    else if(tipo_aposta == "Apostar tudo"){
+    else if(tipo_aposta == "APOSTAR TUDO"){
         valor_aposta = getFichas();
         setFichas(0);
         return valor_aposta;
     }
+}
+
+//TESTE GDB ONLINE
+
+void Jogador::exibe_jogador(){
+    std::cout << "Esta jogando: " << getEsta_jogando() << std::endl;
+    std::cout << "Nome: " << getNome() << std::endl;
+    std::cout << "Fichas: "<< getFichas() << std::endl;
+    std::cout << "Sua mao: " << std::endl;
+    _mao.exibe_mao();
+    std::cout << "Vitorias: " << getNum_vitoria() << std::endl;
+    std::cout << "Tipo: " << getTipo();
+    std::cout << std::endl;
 }
 
 //GETTERS E SETTERS ---------------------------------------
@@ -61,7 +74,8 @@ void Jogador::setNome(std::string nome){_nome = nome;}
 int Jogador::getFichas(){return _fichas;} 
 void Jogador::setFichas(int fichas){_fichas = fichas;} 
 
-Mao Jogador::getMao(){return _mao;}
+Mao &Jogador::getObjeto_mao_jogador(){return _mao;}
+std::vector<Carta> &Jogador::getVector_mao_jogador(){return _mao.getMao();}
 
 int Jogador::getNum_vitoria(){return _num_vitoria;} 
 void Jogador::setNum_vitoria(int num_vitoria){_num_vitoria = num_vitoria;} 

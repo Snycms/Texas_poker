@@ -8,7 +8,7 @@
 
 Jogador::Jogador(){
     setEsta_jogando(true);
-    setNome(nome);
+    setNome("");
     setFichas(100);
     Mao _mao;
     setNum_vitoria(0);
@@ -26,7 +26,7 @@ int Jogador::desistir(int jogador_atual){
 
 void Jogador::limpar(){}
 
-int aposta(std::string tipo_aposta, int valor_aposta){
+int Jogador::aposta(std::string tipo_aposta, int valor_aposta){
     //Aposta normal
     if(tipo_aposta == "Aposta"){
         setFichas(getFichas() - valor_aposta);

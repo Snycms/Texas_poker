@@ -24,16 +24,16 @@ int Jogador::desistir(int jogador_atual){
     return jogador_atual + 1;
 }
 
-void Jogador::limpar(){
-    setEsta_jogando(true);
-    setFichas(100);
-    getVector_mao_jogador().erase(getVector_mao_jogador().begin(), getVector_mao_jogador().end());
-    setTipo("");
-}
+void Jogador::limpar(){}
 
-int Jogador::aposta(std::string tipo_aposta, int valor_aposta){
-    //Aposta normal - Aumenta a aposta
-    if(tipo_aposta == "APOSTA" || tipo_aposta == "AUMENTAR"){
+int aposta(std::string tipo_aposta, int valor_aposta){
+    //Aposta normal
+    if(tipo_aposta == "Aposta"){
+        setFichas(getFichas() - valor_aposta);
+        return valor_aposta;
+    }
+    //Aumenta a aposta
+    else if(tipo_aposta == "Aumentar"){
         setFichas(getFichas() - valor_aposta);
         return valor_aposta;
     }

@@ -2,10 +2,7 @@
 #define BARALHO_CPP
 
 #include "Baralho.hpp"
-#include "Carta.hpp"
-#include "Mao.hpp"
 
-#include <vector>
 #include <random>
 #include <algorithm>
 #include <chrono>

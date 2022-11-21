@@ -2,7 +2,6 @@
 #define JOGADOR_CPP
 
 #include "Jogador.hpp"
-#include "Mao.hpp"
 
 #include <iostream>
 
@@ -16,15 +15,16 @@ Jogador::Jogador(){
 }
         
 Jogador::~Jogador(){getObjeto_mao_jogador().~Mao();}
+
+//Acoes que os jogadores podem realizar-----------------------------
         
-int Jogador::passar_vez(int jogador_atual){return jogador_atual + 1;}
-
-int Jogador::desistir(int jogador_atual){
-    setEsta_jogando(false);
-    return jogador_atual + 1;
+int Jogador::check_desistir(std::string acao, int jogador_atual){
+    if(acao == "DESISTIR"){
+        setEsta_jogando(false);
+        return jogador_atual + 1;
+    }
+    else if(acao == "CHECK"){return jogador_atual + 1;}
 }
-
-void Jogador::limpar(){}
 
 int Jogador::aposta(std::string tipo_aposta, int valor_aposta){
     //Aposta normal
@@ -49,6 +49,9 @@ int Jogador::aposta(std::string tipo_aposta, int valor_aposta){
         return valor_aposta;
     }
 }
+//-------------------------------------------------------------------
+
+void Jogador::limpar_mesa(){}
 
 //TESTE GDB ONLINE
 

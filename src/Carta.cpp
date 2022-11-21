@@ -7,7 +7,7 @@
 #include <iostream>
 
 Carta::Carta(int valor, std::string nome, std::string naipe, bool rosto_baixo){
-    _valor = valor;
+    setValor(valor);
     _nome = nome;
     _naipe = naipe;
     setRosto_baixo(rosto_baixo);
@@ -32,6 +32,7 @@ void Carta::exibe_carta(){
 //GETTERS E SETTERS ---------------------------------------
 
 int Carta::getValor(){return _valor;}
+void Carta::setValor(int valor){_valor = valor;}
 
 std::string Carta::getNome(){return _nome;}
 

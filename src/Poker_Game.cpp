@@ -3,12 +3,6 @@
 
 #include "Poker_Game.hpp"
 
-#include "Carta.hpp"
-#include "Mao.hpp"
-#include "Baralho.hpp"
-#include "Jogador.hpp"
-#include "Computador.hpp"
-
 Poker_Game::Poker_Game(){
     Jogador _jogador[4];
     int POT = 0;

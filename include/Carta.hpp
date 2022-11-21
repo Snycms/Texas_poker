@@ -25,6 +25,8 @@ class Carta{
 
         //Get valor da Carta
         int getValor();
+        //Set valor da Carta
+        void setValor(int valor);
 
         //Get nome da Carta
         std::string getNome();

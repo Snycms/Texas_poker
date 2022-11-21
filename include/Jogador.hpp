@@ -19,9 +19,10 @@ class Jogador{
         Jogador();
         ~Jogador();
         
-        int passar_vez(int jogador_atual);
-        int desistir(int jogador_atual);
-        void limpar();
+        //Acoes que os jogadores podem realizar----------------------
+
+        //Passa a vez sem apostar(CHECK) e desistir(DESISTIR)
+        int check_desistir(std::string acao, int jogador_atual);
 
         //Tipos de aposta:
         //Aposta normal - Aumentar aposta
@@ -29,6 +30,10 @@ class Jogador{
         //All-in(Aposta tudo)
 
         int aposta(std::string tipo_aposta, int valor_aposta);
+
+        //------------------------------------------------------------
+
+        void limpar_mesa();
         
         //TESTE GDB ONLINE
         void exibe_jogador();

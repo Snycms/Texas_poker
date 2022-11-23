@@ -23,64 +23,84 @@ Carta Mao::maior_carta(){
     return maior;
 }
 
-int Mao::valor_mao(){
-    std::cout << royal_flush() << std::endl;
-    return 0;
+std::string Mao::valor_mao(){
+    if(royal_flush_e_straight_flush() != 0){
+        int valor = royal_flush_e_straight_flush();
+        if(valor >= 270){
+            std::string mao = "Royal Flush: " + std::to_string(valor);
+            return mao;}
+        else{
+            std::string mao = "Straight Flush: " + std::to_string(valor);
+            return mao;}
+    }
+    else if(quadra_e_fullHouse() != 0){
+        int valor = quadra_e_fullHouse();
+        if(valor >= 210){
+            std::string mao = "Quadra: " + std::to_string(valor);
+            return mao;}
+        else{
+            std::string mao = "Full House: " + std::to_string(valor);
+            return mao;}
+    }
+    else if(flush() != 0){
+        int valor = flush();
+        std::string mao = "Flush: " + std::to_string(valor);
+        return mao;
+    }
+    else if(straight() != 0){
+        int valor = straight();
+        std::string mao = "Straight: " + std::to_string(valor);
+        return mao;
+    }
+    else if(trinca_doisPares_par_cartaAlta() != 0){
+        int valor = trinca_doisPares_par_cartaAlta();
+        if(valor >= 90 && valor < 120){
+            std::string mao = "Trinca: " + std::to_string(valor);
+            return mao;}
+        else if(valor >= 60 && valor < 90){
+            std::string mao = "Dois Pares: " + std::to_string(valor);
+            return mao;}
+        else if(valor >= 30 && valor < 60){
+            std::string mao = "Um par: " + std::to_string(valor);
+            return mao;}
+        else if(valor < 30){
+            std::string mao = "Carta Alta: " + std::to_string(valor);
+            return mao;}
+    }
 }
 
 //POSSIVEIS MAOS-----------------------------------------------------------------------------------------------------
 
-int Mao::royal_flush(){
-    std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
-    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena da maior para menor
-
-    std::vector<Carta> mao_mesa = _mao; //Cartas da mesa
-    std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena da maior para menor
-    
-    int Royal_Flush[5] = {13, 12, 11, 10, 9}; //Array auxiliar
-    int confere_iguais = 0;
-    
-    //Se as duas cartas_jogador forem as ultimas da mao_mesa o jogador não tem um Royal Flush
-    if(cartas_jogador.front().getValor() != mao_mesa.at(5).getValor() && cartas_jogador.back().getValor() != mao_mesa.at(6).getValor()){ 
-        for(int i=0; i<5; ++i){
-            //Conferindo se os valores são iguais aos do array Royal Flush e se os naipes são iguais, se não o jogador não tem um Royal Flush
-            if(mao_mesa.at(i).getValor() == Royal_Flush[i] && mao_mesa.at(0).getNaipe() == mao_mesa.at(i).getNaipe()){
-                confere_iguais += 1;
-            }
-            else{break;}
-        }
-        if(confere_iguais == 5){ //Se isso for verdade mao_mesa é igual ao Royal Flush
-            mao_mesa.clear();
-            cartas_jogador.clear();
-            return 20;}
-        else{ //Não tem um Royal Flush
-            mao_mesa.clear();
-            cartas_jogador.clear();
-            return 0;}
-    }
-    else{ //Não tem um Royal Flush
-        mao_mesa.clear();
-        cartas_jogador.clear();
-        return 0;}
-}
-
-int Mao::straight_flush(){
+int Mao::royal_flush_e_straight_flush(){
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
     std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> mao_mesa = _mao; //Cartas da mesa
     std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena maior para menor
-
-    if(mao_mesa.front().getValor() == 13){mao_mesa.front().setValor(0);} //Se a 1° for As ele terá valor 0, para uma sequencia de As, 2, 3, 4, 5
+    
+    //Se a 1° for As ele terá valor 0, para uma sequencia de As, 2, 3, 4, 5
+    if(mao_mesa.front().getValor() == 13){
+        Carta copia_aux = mao_mesa.front();
+        copia_aux.setValor(0);
+        mao_mesa.push_back(copia_aux);
+        copia_aux.~Carta();
+    }
+    
+    
     std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena de novo
-
-    int confere_sequencia;
+    
+    int Royal_Flush[5] = {13, 12, 11, 10, 9}; //Array auxiliar
     int Straight_Flush[5]; 
+    std::vector<Carta> mao_aux; //Criando a mao com as cartas da mao, se der certo iguala a mao do jogador
+    
+    int confere_royal_flush;
+    int confere_straight_flush;
     int it; //Iterator
 
     if(mao_mesa.front().getValor() > 4){ //Carta alta sempre tem que ser maior que 4 - menor sequencia possivel é 4 ,3 ,2 ,1 ,0 -> (5, 4, 3, 2, As)
-        for(it=0; it<3; ++it){
-            confere_sequencia = 0;
+        for(it=0; it<4; ++it){
+            confere_royal_flush = 0;
+            confere_straight_flush = 0;
             Straight_Flush[0] = mao_mesa.at(it).getValor();
 
             for(int j=1; j<5; ++j){Straight_Flush[j] = Straight_Flush[0] - j;} //Criando um Straight Flush para comparar
@@ -88,37 +108,123 @@ int Mao::straight_flush(){
             int *pri_elemento = std::find(Straight_Flush, Straight_Flush + 5, cartas_jogador.front().getValor());
             int *seg_elemento = std::find(Straight_Flush, Straight_Flush + 5, cartas_jogador.back().getValor()); 
             
+            mao_aux = cartas_jogador; 
+            
             if(pri_elemento != Straight_Flush + 5 && seg_elemento != Straight_Flush + 5){
                 for(int j=0; j<5; ++j){
-                    if(mao_mesa.at(it + j).getValor() == Straight_Flush[j] && mao_mesa.at(it).getNaipe() == mao_mesa.at(it + j).getNaipe()){ 
-                        confere_sequencia += 1;}
+                    if(mao_mesa.at(it + j).getValor() == Royal_Flush[j] && mao_mesa.at(it).getNaipe() == mao_mesa.at(it + j).getNaipe()){
+                        confere_royal_flush += 1;
+                        mao_aux.push_back(mao_mesa.at(j));
+                    }
+                    
+                    else if(mao_mesa.at(it + j).getValor() == Straight_Flush[j] && mao_mesa.at(it).getNaipe() == mao_mesa.at(it + j).getNaipe()){ 
+                        mao_aux.push_back(mao_mesa.at(j));
+                        confere_straight_flush += 1;}
+                        
                     else{break;}
                 }
             }else{continue;}
             
-            if(confere_sequencia == 5){cartas_jogador.clear(); mao_mesa.clear(); return 18;} //Deleta todos vector's e retorna o valor do Straight Flush
+            if(confere_royal_flush == 5){
+                int valor_mao = 270 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+                _mao = mao_aux;
+                mao_aux.clear();
+                mao_mesa.clear();
+                cartas_jogador.clear();
+                return valor_mao;
+            }
+            if(confere_straight_flush == 5){ //Deleta todos vector's e retorna o valor do Straight Flush
+                int valor_mao = 240 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+                _mao = mao_aux;
+                mao_aux.clear();
+                mao_mesa.clear();
+                cartas_jogador.clear();
+                return valor_mao;
+            }
             else{continue;}
         }
     }
-    else{cartas_jogador.clear(); mao_mesa.clear(); return 0;} //Deleta todos vector's e retorna o valor 0
+    
+    else{cartas_jogador.clear(); mao_mesa.clear(); mao_aux.clear(); return 0;} //Deleta todos vector's e retorna o valor 0
     //Se ja fez todas iteracoes possiveis e o confere_sequencia menor que 5, jogador nao tem um Straight Flush - Deleta todos vector's e retorna o valor 0
-    if(it == 3 && confere_sequencia < 5){cartas_jogador.clear(); mao_mesa.clear(); return 0;} 
+    if(it == 4 && confere_straight_flush < 5){cartas_jogador.clear(); mao_mesa.clear(); mao_aux.clear(); return 0;} 
 }
 
-/*int Mao::quadra(){
-    std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
+int Mao::quadra_e_fullHouse(){
+    std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)};//Cartas recebidas pelo jogador
     std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
 
-    std::vector<Carta> mao_mesa = _mao; //Cartas da mesa
+    std::vector<Carta> mao_mesa = {_mao.begin()+2, _mao.end()}; //Cartas da mesa
     std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena maior para menor
+    
+    std::vector<Carta> mao_aux;
+    int confere_trinca = 0;
+    int confere_par = 0;
+    int it; //iterator
+    
+    mao_aux = cartas_jogador;
+    
+    for(int j=0; j<5; ++j){
+        if(mao_aux.at(0).getValor() == mao_mesa.at(j).getValor()){
+            mao_aux.push_back(mao_mesa.at(j));
+            confere_trinca += 1;
+        }
+        else if(mao_aux.at(1).getValor() == mao_mesa.at(j).getValor()){
+            mao_aux.push_back(mao_mesa.at(j));
+            confere_par += 1;
+        }
+        else{continue;}
+    }
+    
+    if(confere_trinca == 4 || confere_par == 4){//Se for uma Quadra iguala a mao_aux a _mao, deleta os vector's e retorna o valor + o valor das duas cartas
+        int valor_mao = 210 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+        _mao = mao_aux;
+        mao_aux.clear();
+        mao_aux.clear();
+        cartas_jogador.clear();
+        return valor_mao;
+    }
+    else if(confere_trinca == 3 && confere_par == 2 || confere_trinca == 2 && confere_par == 3){ //Se for uma Trinca iguala a mao_aux a _mao, deleta os vector's e retorna o valor + o valor das duas cartas
+        int valor_mao = 180 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+        mao_aux.clear();
+        mao_aux.clear();
+        cartas_jogador.clear();
+        return valor_mao;
+    }
+    else{mao_aux.clear(); mao_aux.clear(); cartas_jogador.clear(); return 0;} //Deleta todos vector's e retorna 0
+}
 
-    int confere_quadra;
+int Mao::flush(){
+    std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)};//Cartas recebidas pelo jogador
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
 
-}*/
-
-int Mao::full_house(){}
-
-int Mao::flush(){}
+    std::vector<Carta> mao_mesa = {_mao.begin()+2, _mao.end()}; //Cartas da mesa
+    std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena maior para menor
+    
+    std::vector<Carta> mao_aux = cartas_jogador;
+    int confere_flush = 0;
+    
+    if(cartas_jogador.front().getNaipe() == cartas_jogador.back().getNaipe()){
+        for(int i=0; i<5; ++i){
+            if(cartas_jogador.front().getNaipe() == mao_mesa.at(i).getNaipe()){
+                confere_flush += 1;
+                mao_aux.push_back(mao_mesa.at(i));
+            }else{continue;}
+        }
+        if(confere_flush == 5 && mao_aux.size() == 5){ 
+            int valor_mao = 150 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+            _mao = mao_aux;
+            mao_aux.clear();
+            mao_mesa.clear();
+            cartas_jogador.clear();
+            return valor_mao;
+        }
+    }
+    else{cartas_jogador.clear(); mao_mesa.clear(); mao_aux.clear(); return 0;}
+    
+    if(confere_flush == 5 && mao_aux.size() < 5){cartas_jogador.clear(); mao_mesa.clear(); mao_aux.clear(); return 0;}
+    else{cartas_jogador.clear(); mao_mesa.clear(); mao_aux.clear(); return 0;}
+}
     
 int Mao::straight(){
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
@@ -126,11 +232,14 @@ int Mao::straight(){
 
     std::vector<Carta> mao_mesa = _mao; //Cartas da mesa
     std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena maior para menor
+    
+    std::vector<Carta> mao_aux = cartas_jogador;
 
-    Carta copia_aux = mao_mesa.front();
-    if(copia_aux.getValor() == 13){
+    if(mao_mesa.front().getValor() == 13){
+        Carta copia_aux = mao_mesa.front();
         copia_aux.setValor(0);
         mao_mesa.push_back(copia_aux); //Se a 1° for As cria uma copia, para uma possivel sequencia de As, 2, 3, 4, 5, e adiciona no vector com o valor 0
+        copia_aux.~Carta();
     }
 
     int confere_sequencia;
@@ -150,25 +259,86 @@ int Mao::straight(){
             if(pri_elemento != Straight + 5 && seg_elemento != Straight + 5){
                 for(int j=0; j<5; ++j){
                     if(mao_mesa.at(it + j).getValor() == Straight[j]){ 
-                        confere_sequencia += 1;}
+                        confere_sequencia += 1;
+                        mao_aux.push_back(mao_mesa.at(it + j));
+                    }
                     else{break;}
                 }
             }else{continue;}
-
-            if(confere_sequencia == 5){cartas_jogador.clear(); mao_mesa.clear(); return 10;} //Deleta todos vector's e retorna o valor do Straight
+            //Se for verdadeiro deleta todos vector's e retorna o valor do Straight + o valor das cartas do jogador
+            if(confere_sequencia == 5 && mao_aux.size() == 5){
+                int valor = 120 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+                _mao = mao_aux;
+                mao_aux.clear();
+                mao_mesa.clear();
+                cartas_jogador.clear();
+                return valor;
+            } 
             else{continue;}
         }
     }
-    else{cartas_jogador.clear(); mao_mesa.clear(); return 0;}
+    else{mao_aux.clear(); cartas_jogador.clear(); mao_mesa.clear(); return 0;}
     //Se ja fez todas iteracoes possiveis e o confere_sequencia menor que 5, jogador nao tem um Straight - Deleta todos vector's e retorna o valor 0
-    if(it == 4 && confere_sequencia < 5){cartas_jogador.clear(); mao_mesa.clear(); return 0;}
+    if(it == 4 && confere_sequencia < 5){mao_aux.clear(); cartas_jogador.clear(); mao_mesa.clear(); return 0;}
 }
+
+int Mao::trinca_doisPares_par_cartaAlta(){
+    std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)};//Cartas recebidas pelo jogador
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
+
+    std::vector<Carta> mao_mesa = {_mao.begin()+2, _mao.end()}; //Cartas da mesa
+    std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena maior para menor
     
-int Mao::trinca(){}
-
-int Mao::dois_pares(){}
-
-int Mao::par(){}
+    std::vector<Carta> mao_aux;
+    int confere_trinca = 0;
+    int confere_par = 0;
+    
+    mao_aux = cartas_jogador;
+    
+    for(int i=0; i<5; ++i){
+        if(mao_aux.at(0).getValor() == mao_mesa.at(i).getValor()){
+            mao_aux.push_back(mao_mesa.at(i));
+            confere_trinca += 1;
+        }
+        else if(mao_aux.at(1).getValor() == mao_mesa.at(i).getValor()){
+            mao_aux.push_back(mao_mesa.at(i));
+            confere_par += 1;
+        }
+        else{continue;}
+    }
+    
+    if(confere_trinca == 3 || confere_par == 3){
+        int valor_mao = 90 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+        _mao = mao_aux;
+        mao_aux.clear();
+        mao_mesa.clear();
+        cartas_jogador.clear();
+        return valor_mao;
+    }
+    else if(confere_trinca == 2 && confere_par == 2){
+        int valor_mao = 60 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+        _mao = mao_aux;
+        mao_aux.clear();
+        mao_mesa.clear();
+        cartas_jogador.clear();
+        return valor_mao;
+    }
+    else if(confere_par == 2 || confere_trinca == 2){
+        int valor_mao = 30 + cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+        _mao = mao_aux;
+        mao_aux.clear();
+        mao_mesa.clear();
+        cartas_jogador.clear();
+        return valor_mao;
+    }
+    else{
+        int valor_mao = cartas_jogador.front().getValor() + cartas_jogador.back().getValor();
+        _mao = mao_aux;
+        mao_aux.clear();
+        mao_mesa.clear();
+        cartas_jogador.clear();
+        return valor_mao;}
+}
 
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -186,6 +356,5 @@ void Mao::exibe_mao(){
 bool Mao::ordena_mao_valor(Carta x, Carta y){return (x.getValor() > y.getValor());}
 
 std::vector<Carta> &Mao::getMao(){return _mao;}
-
 
 #endif

@@ -27,16 +27,24 @@ class Mao{
     
     //POSSIVEIS MAOS--------------------------------------------
 
-    //Royal Flush e Straight Flush
-    int royal_flush_e_straight_flush();
-    //Quadra e Full House
-    int quadra_e_fullHouse();
+    //Straight Flush (Royal Flush, maior mão e um tipo de Straight Flush)
+    int straight_flush();
+    //Quadra 
+    int quadra();
+    //Full House
+    int full_house();
     //Flush
     int flush();
     //Straight
     int straight();
-    //Trinca, Dois Pares, Par e Carta Alta
-    int trinca_doisPares_par_cartaAlta();
+    //Trinca 
+    int trinca();
+    //Dois Pares
+    int dois_pares();
+    //Par
+    int par();
+    //Carta Alta
+    int carta_alta();
 
     //----------------------------------------------------------
 

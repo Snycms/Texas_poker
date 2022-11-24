@@ -11,7 +11,7 @@ Projeto feito para a disciplina de Programação e Desenvolvimento de Software d
 <br><br><br>
 <h1 id = funcionalidades>Funcionalidades</h1>
 
-<h2>1- Guardar nome e valores de aposta de jogadores<br></h2>
+<h2>1- Guardar nome e valores de aposta de jogadores.<br></h2>
 <br>
 Para cada jogador da rodada, o sistema guarda o nome e os valores de aposta<br><br>
 

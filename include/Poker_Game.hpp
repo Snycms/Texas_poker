@@ -21,8 +21,6 @@ class Poker_Game{
         Poker_Game();
         ~Poker_Game();
 
-        void jogar_rodada();
-
         //GETTERS E SETTERS ---------------------------------------
 
         Baralho &getBaralho();

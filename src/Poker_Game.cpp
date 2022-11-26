@@ -19,14 +19,6 @@ Poker_Game::~Poker_Game(){
 
 }
 
-void Poker_Game::jogar_rodada(){
-
-        _baralho.embaralha();
-
-
-}
-
-
 //GETTERS E SETTERS ---------------------------------------
         
 Baralho &Poker_Game::getBaralho(){return _baralho;}

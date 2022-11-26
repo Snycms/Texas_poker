@@ -25,8 +25,8 @@ Baralho::~Baralho(){_baralho.clear();}
 
 void Baralho::embaralha(){
     unsigned int semente = std::chrono::system_clock::now().time_since_epoch().count();
-    std::shuffle(_baralho.begin(), _baralho.end(), std::default_random_engine(0));
-    _baralho.erase(_baralho.begin(), _baralho.end() - 13);
+    std::shuffle(_baralho.begin(), _baralho.end(), std::default_random_engine(semente));
+    //_baralho.erase(_baralho.begin(), _baralho.end());
 }
     
 Carta Baralho::carta_topo(int posicao){return _baralho.at((_baralho.size()-1) - posicao);}

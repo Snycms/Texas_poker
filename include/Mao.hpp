@@ -19,9 +19,6 @@ class Mao{
     //Adiciona mais cartas no flop, turn e river = setMao
     void adiciona_carta(Carta carta); 
 
-    //Compara as cartas da mao de um jogador e retorna a maior
-    Carta maior_carta(); 
-
     //Retorna valor da mao do jogador
     std::string valor_mao(); 
     
@@ -29,7 +26,7 @@ class Mao{
 
     //Straight Flush (Royal Flush, maior mão e um tipo de Straight Flush)
     int straight_flush();
-    //Quadra 
+    //Quadra
     int quadra();
     //Full House
     int full_house();
@@ -58,7 +55,6 @@ class Mao{
 
     //Get mao
     std::vector<Carta> &getMao();
-
 };
 
 #endif

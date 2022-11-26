@@ -29,7 +29,7 @@ class Jogador{
         //Call(Aposta mesma quantidade que o ultimo jogador)
         //All-in(Aposta tudo)
 
-        int aposta(std::string tipo_aposta, int valor_aposta);
+        int aposta(std::string tipo_aposta, int valor_aposta, int &jogador_atual);
 
         //------------------------------------------------------------
 

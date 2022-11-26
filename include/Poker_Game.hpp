@@ -9,11 +9,12 @@
 
 class Poker_Game{
     private:
-        Jogador _jogador[4];
-        //Premio do vencedor(Soma das apostas)
-        int POT;
-        int _jogador_atual;
         Baralho _baralho;
+        Jogador _jogador;
+        Computador _bot;
+        int _POT; //Premio do vencedor(Soma das apostas)
+        int _aposta_anterior;
+        int _jogador_atual;
         int _rodada;
     
     public:
@@ -22,11 +23,24 @@ class Poker_Game{
 
         void jogar_rodada();
 
+        //GETTERS E SETTERS ---------------------------------------
+
+        Baralho &getBaralho();
+        Jogador &getJogador();
+        Computador &getBot();
+
+        int getPOT();
+        void adiciona_aposta_POT(int valor_aposta);
+        void setPOT(int valor_aposta);
+
+        int getAposta_anterior();
+        void setAposta_anterior(int aposta_anterior);
+
         int getJogador_atual();
-        void setJogador_atual();
+        void setJogador_atual(int jogador_atual);
 
         int getRodada();
-        void setRodada();
+        void setRodada(int rodada);
 };
 
 #endif

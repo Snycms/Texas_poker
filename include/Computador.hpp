@@ -12,7 +12,7 @@ class Computador: public Jogador{
         
         ~Computador();
 
-        void fazer_jogada();
+        void fazer_jogada(int pot, int qtd_raise, int raise, int jogadores_presentes, int jogador_atual, int ultima_aposta);
 
         //GETTERS E SETTERS ---------------------------------------
 

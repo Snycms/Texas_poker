@@ -1,8 +1,3 @@
-#include "Carta.hpp"
-#include "Baralho.hpp"
-#include "Mao.hpp"
-#include "Jogador.hpp"
-//#include "Computador.hpp" 
 #include "Poker_Game.hpp"
 
 #include <iostream>
@@ -11,30 +6,30 @@
 
 
 int main (){
-    Baralho baralho;
 
-    baralho.embaralha();
-        
-    Jogador jogador;
+    std::string opcao_jogo;
 
-    /*//FLOP
-    for(int i=0; i<4; ++i){
-            baralho.distribui_carta("FLOP", mao[i]);
-    }
-    baralho.remove_carta("FLOP");
-    //FIM DO FLOP
+    std::cout << "tela inicial" << std::endl;
+    std::cin >> opcao_jogo;
 
-    //TURN
-    for(int i=0; i<4; ++i){
-            baralho.distribui_carta("TURN", mao[i]);
+    if(opcao_jogo == "Novo Jogo"){
+        Poker_Game poker;
+        Jogador jogador = poker.getJogador();
+        Computador bot = poker.getBot();
+
+        std::string nome;
+
+        std::cout << "Tela Digite o nome" << std::endl;
+        std::cin >> nome;
+        jogador.setNome(nome);
+
+        int dificuldade;
+        std::cout << "Tela slecione a dificuldade de jogo" << std::endl;
+        std::cin >> dificuldade;
+
+        bot.setDificuldade(dificuldade);
+        //Depois que o jogador escolher a dificuldade jogo comeca
+
+        poker.jogar_rodada();
     }
-    baralho.remove_carta("TURN");
-    //FIM DO TURN
-        
-    //RIVER
-    for(int i=0; i<4; ++i){
-            baralho.distribui_carta("RIVER", mao[i]);
-    }
-    baralho.remove_carta("RIVER");
-    //FIM DO RIVER*/
 }

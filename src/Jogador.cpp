@@ -26,26 +26,24 @@ int Jogador::check_desistir(std::string acao, int jogador_atual){
     else if(acao == "CHECK"){return jogador_atual + 1;}
 }
 
-int Jogador::aposta(std::string tipo_aposta, int valor_aposta){
-    //Aposta normal
-    if(tipo_aposta == "Aposta"){
+int Jogador::aposta(std::string tipo_aposta, int valor_aposta, int &jogador_atual){
+    //Aposta
+    if(tipo_aposta == "Aumentar"){
         setFichas(getFichas() - valor_aposta);
-        return valor_aposta;
-    }
-    //Aumenta a aposta
-    else if(tipo_aposta == "Aumentar"){
-        setFichas(getFichas() - valor_aposta);
+        jogador_atual += 1;
         return valor_aposta;
     }
     //Aposta mesma quantidade que o ultimo jogador
     else if(tipo_aposta == "CALL"){
         setFichas(getFichas() - valor_aposta);
+        jogador_atual += 1;
         return valor_aposta;
     }
     //All-in(Aposta tudo)
     else if(tipo_aposta == "APOSTAR TUDO"){
         valor_aposta = getFichas();
         setFichas(0);
+        jogador_atual += 1;
         return valor_aposta;
     }
 }

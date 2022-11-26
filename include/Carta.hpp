@@ -16,10 +16,10 @@ class Carta{
         ~Carta();
 
         //Vira a carta - Semelhante ao setRosto_baixo
-        void virar();
+        void virar_carta();
         
         //TESTE ONLINE GDB
-        void exibe_carta();
+        void imprimir_carta();
 
         //GETTERS E SETTERS ---------------------------------------
 

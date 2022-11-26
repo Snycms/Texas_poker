@@ -22,21 +22,21 @@ class Jogador{
         //Acoes que os jogadores podem realizar----------------------
 
         //Passa a vez sem apostar(CHECK) e desistir(DESISTIR)
-        int check_desistir(std::string acao, int jogador_atual);
+        int fazer_check_desistir(std::string acao, int jogador_atual);
 
         //Tipos de aposta:
         //Aposta normal - Aumentar aposta
         //Call(Aposta mesma quantidade que o ultimo jogador)
         //All-in(Aposta tudo)
 
-        int aposta(std::string tipo_aposta, int valor_aposta, int &jogador_atual);
+        int apostar_fichas(std::string tipo_aposta, int valor_aposta, int &jogador_atual);
 
         //------------------------------------------------------------
 
         void limpar_mesa();
         
         //TESTE GDB ONLINE
-        void exibe_jogador();
+        void imprimir_jogador();
         
         //GETTERS E SETTERS ---------------------------------------
     

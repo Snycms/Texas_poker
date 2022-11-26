@@ -15,7 +15,7 @@ Carta::Carta(int valor, std::string nome, std::string naipe, bool rosto_baixo){
 
 Carta::~Carta(){}
 
-void Carta::virar(){
+void Carta::virar_carta(){
     if(getRosto_baixo() == true){
         bool virar = false;
         setRosto_baixo(virar);
@@ -23,7 +23,7 @@ void Carta::virar(){
 }
 
 //TESTE ONLINE GDB
-void Carta::exibe_carta(){
+void Carta::imprimir_carta(){
     std::cout << "Valor: " << getValor() << " - ";
     std::cout << "Nome: " << getNome() << " - ";
     std::cout << "Naipe: " << getNaipe() << std::endl;

@@ -18,7 +18,7 @@ Jogador::~Jogador(){getObjeto_mao_jogador().~Mao();}
 
 //Acoes que os jogadores podem realizar-----------------------------
         
-int Jogador::check_desistir(std::string acao, int jogador_atual){
+int Jogador::fazer_check_desistir(std::string acao, int jogador_atual){
     if(acao == "DESISTIR"){
         setEsta_jogando(false);
         return jogador_atual + 1;
@@ -26,7 +26,7 @@ int Jogador::check_desistir(std::string acao, int jogador_atual){
     else if(acao == "CHECK"){return jogador_atual + 1;}
 }
 
-int Jogador::aposta(std::string tipo_aposta, int valor_aposta, int &jogador_atual){
+int Jogador::apostar_fichas(std::string tipo_aposta, int valor_aposta, int &jogador_atual){
     //Aposta
     if(tipo_aposta == "Aumentar"){
         setFichas(getFichas() - valor_aposta);
@@ -53,12 +53,12 @@ void Jogador::limpar_mesa(){}
 
 //TESTE GDB ONLINE
 
-void Jogador::exibe_jogador(){
+void Jogador::imprimir_jogador(){
     std::cout << "Esta jogando: " << getEsta_jogando() << std::endl;
     std::cout << "Nome: " << getNome() << std::endl;
     std::cout << "Fichas: "<< getFichas() << std::endl;
     std::cout << "Sua mao: " << std::endl;
-    _mao.exibe_mao();
+    _mao.imprimir_mao();
     std::cout << "Vitorias: " << getNum_vitoria() << std::endl;
     std::cout << "Tipo: " << getTipo();
     std::cout << std::endl;

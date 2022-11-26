@@ -11,16 +11,16 @@ Mao::Mao(){std::vector<Carta> _mao;}
 
 Mao::~Mao(){_mao.clear();}
 
-void Mao::adiciona_carta(Carta carta){_mao.push_back(carta);}
+void Mao::adicionar_carta(Carta carta){_mao.push_back(carta);}
 
-std::string Mao::valor_mao(){retrun "Certo";}
+std::string Mao::determinar_valor_mao(){return "Certo";}
 
 //POSSIVEIS MAOS-----------------------------------------------------------------------------------------------------
 
 int Mao::straight_flush(){
 
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
-    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> pri_aux = {cartas_jogador.front()}; //Criando vector sem a primeira carta do jogador e com os mesmos naipes da primeira carta
     std::vector<Carta> seg_aux = {cartas_jogador.back()}; //Criando vector sem a segunda carta do jogador e com os mesmos naipes da segunda carta
@@ -31,8 +31,8 @@ int Mao::straight_flush(){
         else if(seg_aux.front().getNaipe() == _mao.at(i).getNaipe() && seg_aux.back().getValor() != _mao.at(i).getValor()){seg_aux.push_back(_mao.at(i));}
         else{continue;}
     }
-    std::sort(pri_aux.begin(), pri_aux.end(), ordena_mao_valor); //Ordena maior para menor
-    std::sort(seg_aux.begin(), seg_aux.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(pri_aux.begin(), pri_aux.end(), ordenar_mao_valor); //Ordena maior para menor
+    std::sort(seg_aux.begin(), seg_aux.end(), ordenar_mao_valor); //Ordena maior para menor
     //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     if(pri_aux.front().getValor() == 13){
@@ -141,10 +141,10 @@ int Mao::straight_flush(){
 int Mao::quadra(){
 
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
-    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> mao_aux = _mao; //Criando vector auxiliar
-    std::sort(mao_aux.begin(), mao_aux.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(mao_aux.begin(), mao_aux.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> quadra; //Criando vector que pode ser a mão final
 
@@ -210,10 +210,10 @@ int Mao::quadra(){
 /*int Mao::full_house(){
 
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
-    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> mao_aux = _mao; //Criando vector auxiliar
-    std::sort(mao_aux.begin(), mao_aux.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(mao_aux.begin(), mao_aux.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> trinca; //Criando um vector de tres cartas do mesmo valor
     std::vector<Carta> par; //Criando um vector de 2 cartas do mesmo valor
@@ -248,12 +248,12 @@ int Mao::quadra(){
     std::vector<Carta> full_house = {trinca.begin(),}
 }*/
 
-int Mao::flush(){
+/*int Mao::flush(){
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)};//Cartas recebidas pelo jogador
-    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> pri_flus = {_mao.begin()+2, _mao.end()}; //Cartas da mesa
-    std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(mao_mesa.begin(), mao_mesa.end(), ordenar_mao_valor); //Ordena maior para menor
     
     std::vector<Carta> pri_flush = cartas_jogador;
     int confere_flush = 0;
@@ -278,14 +278,14 @@ int Mao::flush(){
     
     if(confere_flush == 5 && mao_aux.size() < 5){cartas_jogador.clear(); mao_mesa.clear(); mao_aux.clear(); return 0;}
     else{cartas_jogador.clear(); mao_mesa.clear(); mao_aux.clear(); return 0;}
-}
+}*/
     
 int Mao::straight(){
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)}; //Cartas recebidas pelo jogador
-    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> mao_mesa = _mao; //Cartas da mesa
-    std::sort(mao_mesa.begin(), mao_mesa.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(mao_mesa.begin(), mao_mesa.end(), ordenar_mao_valor); //Ordena maior para menor
     
     std::vector<Carta> mao_aux = cartas_jogador;
 
@@ -338,7 +338,7 @@ int Mao::straight(){
 
 int Mao::trinca(){
     std::vector<Carta> cartas_jogador = {_mao.front(), _mao.at(1)};//Cartas recebidas pelo jogador
-    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordena_mao_valor); //Ordena maior para menor
+    std::sort(cartas_jogador.begin(), cartas_jogador.end(), ordenar_mao_valor); //Ordena maior para menor
 
     std::vector<Carta> mao_aux = _mao;
 
@@ -422,16 +422,16 @@ int Mao::carta_alta(){}
 
 
 //TESTE ONLINE GDB
-void Mao::exibe_mao(){
+void Mao::imprimir_mao(){
     std::cout << "Sua mao: " << std::endl;
     for(std::vector<Carta>::iterator it = _mao.begin(); it != _mao.end(); ++it){
-        it->exibe_carta();}
+        it->imprimir_carta();}
     std::cout << std::endl;
 }
 
 //GETTERS E AUXILIARES ---------------------------------------
 
-bool Mao::ordena_mao_valor(Carta x, Carta y){return (x.getValor() >= y.getValor());}
+bool Mao::ordenar_mao_valor(Carta x, Carta y){return (x.getValor() >= y.getValor());}
 
 std::vector<Carta> &Mao::getMao(){return _mao;}
 

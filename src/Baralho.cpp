@@ -23,15 +23,15 @@ Baralho::Baralho(){
 
 Baralho::~Baralho(){_baralho.clear();}
 
-void Baralho::embaralha(){
+void Baralho::embaralhar_cartas(){
     unsigned int semente = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(_baralho.begin(), _baralho.end(), std::default_random_engine(semente));
     //_baralho.erase(_baralho.begin(), _baralho.end());
 }
     
-Carta Baralho::carta_topo(int posicao){return _baralho.at((_baralho.size()-1) - posicao);}
+Carta Baralho::pegar_carta_topo(int posicao){return _baralho.at((_baralho.size()-1) - posicao);}
 
-void Baralho::remove_carta(std::string jogada){
+void Baralho::remover_carta(std::string jogada){
     if(jogada == "FLOP"){
         _baralho.erase(_baralho.end()-3, _baralho.end());
     }
@@ -42,19 +42,19 @@ void Baralho::remove_carta(std::string jogada){
     
 }
 
-void Baralho::distribui_carta(std::string jogada, Mao &mao){
+void Baralho::distribuir_cartas(std::string jogada, Mao &mao){
     if(jogada == "FLOP"){
         for(int j=0; j<3; ++j){
-            mao.adiciona_carta(carta_topo(j));
+            mao.adiciona_carta(pegar_carta_topo(j));
         }
     }
     else if(jogada == "DAR CARTAS" || jogada == "TURN" || jogada == "RIVER"){
-        mao.adiciona_carta(carta_topo(0));
+        mao.adiciona_carta(pegar_carta_topo(0));
     }
 }
 
 //TESTE ONLINE GDB
-void Baralho::imprime_baralho(){
+void Baralho::imprimir_baralho(){
     for(std::vector<Carta>::iterator it = _baralho.begin(); it != _baralho.end(); ++it){
         it->exibe_carta();
     }

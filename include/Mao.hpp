@@ -17,10 +17,10 @@ class Mao{
     ~Mao();
 
     //Adiciona mais cartas no flop, turn e river = setMao
-    void adiciona_carta(Carta carta); 
+    void adicionar_carta(Carta carta); 
 
     //Retorna valor da mao do jogador
-    std::string valor_mao(); 
+    std::string determinar_valor_mao(); 
     
     //POSSIVEIS MAOS--------------------------------------------
 
@@ -46,12 +46,12 @@ class Mao{
     //----------------------------------------------------------
 
     //TESTE ONLINE GDB
-    void exibe_mao();
+    void imprimir_mao();
     
     //GETTERS E AUXILIARES---------------------------------------
     
     //Ordena as cartas da mao(maior para a menor)
-    static bool ordena_mao_valor(Carta x, Carta y);
+    static bool ordenar_mao_valor(Carta x, Carta y);
 
     //Get mao
     std::vector<Carta> &getMao();

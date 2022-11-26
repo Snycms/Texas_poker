@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 
+//No poker com 2 jogadores o Dealer também é o Small Blind
 
 void main (){
     std::string opcao_jogo;
@@ -35,8 +36,6 @@ void main (){
 
         do{
             poker.setRodada(proxima_rodada);
-            //Criando um vector com os jogadores para alternar entre eles
-            //std::vector<Jogador> participantes = {jogador, bot};
             
             baralho.embaralha();
             
@@ -47,16 +46,37 @@ void main (){
                 int dealer = (rand() % 2) + 1; //Numero aleatorio (1 ou 2)
                 
                 //Dealer é o jogador e o bot é Small Blind
-                if(dealer == 1){jogador.setTipo("Dealer"); bot.setTipo("Small Blind");}
+                if(dealer == 1){jogador.setTipo("Dealer"); bot.setTipo("Big Blind");}
                  //Dealer é o bot e o jogador é o Small Blind
-                else{jogador.setTipo("Small Blind"); bot.setTipo("Dealer");}
+                else{jogador.setTipo("Big Blind"); bot.setTipo("Dealer");}
             }
             else{
-                if(jogador.getTipo() == "Dealer"){jogador.setTipo("Small Blind"); bot.setTipo("Dealer");}
-                else{jogador.setTipo("Dealer"); bot.setTipo("Small Blind");}
+                if(jogador.getTipo() == "Dealer"){jogador.setTipo("Big Blind"); bot.setTipo("Dealer");}
+                else{jogador.setTipo("Dealer"); bot.setTipo("Big Blind");}
             }
 
+            //Distribuindo as cartas - Big Blind depois Dealer
+            if(jogador.getTipo() == "Big Blind"){
+                for(int i=0; i<2; ++i){
+                    //Uma carta para o Big Blind - Tira do baralho
+                    baralho.distribui_carta("DAR CARTAS", jogador.getObjeto_mao_jogador());
+                    baralho.remove_carta("DAR CARTAS");
+                    //Uma carta para o Dealer - Tira do baralho
+                    baralho.distribui_carta("DAR CARTAS", bot.getObjeto_mao_jogador());
+                    baralho.remove_carta("DAR CARTAS");
+                }
+            }else{
+                for(int i=0; i<2; ++i){
+                    //Uma carta para o Big Blind - Tira do baralho
+                    baralho.distribui_carta("DAR CARTAS", bot.getObjeto_mao_jogador());
+                    baralho.remove_carta("DAR CARTAS");
+                    //Uma carta para o Dealer - Tira do baralho
+                    baralho.distribui_carta("DAR CARTAS", jogador.getObjeto_mao_jogador());
+                    baralho.remove_carta("DAR CARTAS");
+                }
+            }
             
+            //Pré-Flop
             
 
            

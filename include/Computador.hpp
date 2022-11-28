@@ -11,8 +11,9 @@ class Computador: public Jogador{
         Computador(int dificuldade);
         
         ~Computador();
-
-        void fazer_jogada(int pot, int qtd_raise, int raise, int jogadores_presentes, int jogador_atual, int ultima_aposta);
+        
+        //Retorna numero de fichas que o bot vai apostar
+        int fazer_jogada(int pot, int &qtd_raise_bet, int aposta_anterior, bool &aumentou_aposta);
 
         //GETTERS E SETTERS ---------------------------------------
 

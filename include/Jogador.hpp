@@ -13,23 +13,28 @@ class Jogador{
         Mao _mao;
         int _num_vitoria;
         //Pode ser Dealer, Small Blind ou Big Blind
-        std::string _tipo; 
+        std::string _tipo;
+        bool _apostou_tudo; 
     
     public:
         Jogador();
         ~Jogador();
         
+        void virar_cartas();
+
+        void adicionar_fichas(int pot);
+        
         //Acoes que os jogadores podem realizar----------------------
 
-        //Passa a vez sem apostar(CHECK) e desistir(DESISTIR)
-        int fazer_check_desistir(std::string acao, int jogador_atual);
+        //Passar a vez sem apostar(CHECK) ou desistir(FOLD)
+        void dar_check_ou_fold(std::string acao);
 
         //Tipos de aposta:
         //Aposta normal - Aumentar aposta
         //Call(Aposta mesma quantidade que o ultimo jogador)
         //All-in(Aposta tudo)
 
-        int apostar_fichas(std::string tipo_aposta, int valor_aposta, int &jogador_atual);
+        int apostar_fichas(std::string tipo_aposta, int valor_aposta);
 
         //------------------------------------------------------------
 
@@ -69,6 +74,11 @@ class Jogador{
         std::string getTipo();
         //Set tipo de Jogador(Dealer, Small Blind ou Big Blind)
         void setTipo(std::string tipo);
+
+        //Get se o jogador apostou tudo
+        bool getApostou_tudo();
+        //Set apostou tudo do Jogador
+        void setApostou_tudo(bool apostou_tudo);
 };
 
 #endif

@@ -21,6 +21,11 @@ class Poker_Game{
         Poker_Game();
         ~Poker_Game();
 
+        //Parte final do jogo
+        std::string showdown(Jogador &jogador, Jogador &bot);
+
+        void limpar_mesa(Baralho &baralho);
+
         //GETTERS E SETTERS ---------------------------------------
 
         Baralho &getBaralho();

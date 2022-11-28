@@ -16,7 +16,36 @@ Poker_Game::Poker_Game(){
 Poker_Game::~Poker_Game(){
     _baralho.~Baralho();
     _jogador.~Jogador();
+    _bot.~Jogador();
+}
 
+std::string Poker_Game::showdown(Jogador &jogador, Jogador &bot){
+    jogador.virar_cartas();
+    bot.virar_cartas();
+
+    int mao_jogador = jogador.getObjeto_mao_jogador().determinar_valor_mao();
+    int mao_bot = bot.getObjeto_mao_jogador().determinar_valor_mao();
+
+    if(mao_jogador > mao_bot){
+        jogador.adicionar_fichas(getPOT());
+        setPOT(0);
+        return "JOGADOR VENCEU";;
+    }
+    else if(mao_bot > mao_jogador){
+        bot.adicionar_fichas(poker.getPOT());
+        setPOT(0);
+        return "BOT VENCEU";
+    }
+    else{ //mao_jogador == mao_bot 
+        jogador.adicionar_fichas(poker.getPOT()/2);
+        bot.adicionar_fichas(poker.getPOT()/2);
+        setPOT(0);
+        return "JOGO EMPATADO";
+    }
+}
+
+void Poker_Game::limpar_mesa(Baralho &baralho){
+    baralho.resetar_baralho();
 }
 
 //GETTERS E SETTERS ---------------------------------------

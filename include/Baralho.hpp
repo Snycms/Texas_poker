@@ -14,6 +14,8 @@ class Baralho{
   public:
     Baralho();
     ~Baralho();
+
+    Baralho resetar_baralho();
     
     void embaralhar_cartas();
     

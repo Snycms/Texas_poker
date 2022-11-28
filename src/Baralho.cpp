@@ -23,6 +23,12 @@ Baralho::Baralho(){
 
 Baralho::~Baralho(){_baralho.clear();}
 
+Baralho &Baralho::resetar_baralho(){
+    _baralho.clear();
+    Baralho()
+    return _baralho;
+}
+
 void Baralho::embaralhar_cartas(){
     unsigned int semente = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(_baralho.begin(), _baralho.end(), std::default_random_engine(semente));
@@ -46,10 +52,12 @@ void Baralho::distribuir_cartas(std::string jogada, Mao &mao){
     if(jogada == "FLOP"){
         for(int j=0; j<3; ++j){
             mao.adiciona_carta(pegar_carta_topo(j));
+            pegar_carta_topo(j).setRosto_baixo(false);
         }
     }
     else if(jogada == "DAR CARTAS" || jogada == "TURN" || jogada == "RIVER"){
         mao.adiciona_carta(pegar_carta_topo(0));
+        pegar_carta_topo(0).setRosto_baixo(false);
     }
 }
 

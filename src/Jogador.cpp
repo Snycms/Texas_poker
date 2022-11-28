@@ -14,36 +14,60 @@ Jogador::Jogador(){
     setTipo("");
 }
         
-Jogador::~Jogador(){getObjeto_mao_jogador().~Mao();}
+Jogador::~Jogador(){_mao.~Mao();}
+
+void Jogador::virar_cartas(){
+    std::vector<Carta> mao = getVector_mao_jogador();
+    mao.at(0).setRosto_baixo(false);
+    mao.at(1).setRosto_baixo(false);
+}
+
+void Jogador::adicionar_fichas(int pot){
+    setFichas(getFichas() + pot);
+}
 
 //Acoes que os jogadores podem realizar-----------------------------
         
-int Jogador::fazer_check_desistir(std::string acao, int jogador_atual){
-    if(acao == "DESISTIR"){
-        setEsta_jogando(false);
-        return jogador_atual + 1;
+void Jogador::dar_check_ou_fold(std::string acao){
+    if(acao == "FOLD"){setEsta_jogando(false);}
+
+    else if(acao == "CHECK"){
+        //Não faz nada
     }
-    else if(acao == "CHECK"){return jogador_atual + 1;}
 }
 
-int Jogador::apostar_fichas(std::string tipo_aposta, int valor_aposta, int &jogador_atual){
-    //Aposta
-    if(tipo_aposta == "Aumentar"){
-        setFichas(getFichas() - valor_aposta);
-        jogador_atual += 1;
-        return valor_aposta;
+int Jogador::apostar_fichas(std::string tipo_aposta, int valor_aposta){
+    if(tipo_aposta == "APOSTAR" || tipo_aposta == "AUMENTAR"){
+        //Verifica se tem fichas sufucientes
+        if(valor_aposta >= getFichas()){
+            valor_aposta = getFichas();
+            setApostou_tudo(true);
+            setFichas(0);
+            return valor_aposta;
+        }
+        else{
+            setFichas(getFichas() - valor_aposta);
+            return valor_aposta;
+        }
     }
-    //Aposta mesma quantidade que o ultimo jogador
     else if(tipo_aposta == "CALL"){
-        setFichas(getFichas() - valor_aposta);
-        jogador_atual += 1;
-        return valor_aposta;
+        //verifica se tem fichas sufucientes
+        if(valor_aposta >= getFichas()){
+            valor_aposta = getFichas();
+            setFichas(0);
+            setApostou_tudo(true);
+            return valor_aposta;
+        }
+        else{
+            setFichas(getFichas() - valor_aposta);
+            return valor_aposta;
+        }
     }
     //All-in(Aposta tudo)
-    else if(tipo_aposta == "APOSTAR TUDO"){
+    else{
         valor_aposta = getFichas();
         setFichas(0);
-        jogador_atual += 1;
+        setApostou_tudo(true);
         return valor_aposta;
     }
 }
@@ -76,6 +100,7 @@ int Jogador::getFichas(){return _fichas;}
 void Jogador::setFichas(int fichas){_fichas = fichas;} 
 
 Mao &Jogador::getObjeto_mao_jogador(){return _mao;}
+
 std::vector<Carta> &Jogador::getVector_mao_jogador(){return _mao.getMao();}
 
 int Jogador::getNum_vitoria(){return _num_vitoria;} 
@@ -83,5 +108,8 @@ void Jogador::setNum_vitoria(int num_vitoria){_num_vitoria = num_vitoria;}
 
 std::string Jogador::getTipo(){return _tipo;} 
 void Jogador::setTipo(std::string tipo){_tipo = tipo;}
+
+bool Jogador::getApostou_tudo(){return _apostou_tudo;}
+void Jogador::setApostou_tudo(bool apostou_tudo){_apostou_tudo = apostou_tudo;}
 
 #endif

@@ -270,7 +270,7 @@ int main (){
                         std::cin >> aposta_anterior;
                         aposta_anterior = jogador.apostar_fichas(tipo_jogada, aposta_anterior);
                         poker.adiciona_aposta_POT(aposta_anterior);
-                        raise += 1;
+                        qtd_raise_bet += 1;
                     }
                     else if(tipo_jogada == "APOSTAR TUDO"){
                         aposta_anterior = jogador.apostar_fichas(" ",0);

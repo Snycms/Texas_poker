@@ -204,7 +204,6 @@ int main (){
                 
 
             //PARTE 5 (FLOP)--------------------------------------------------------------------------------------
-            if(jogador.getEsta_jogando() == true && bot.getEsta_jogando() == true){
             
             baralho.distribuir_cartas("FLOP", jogador.getObjeto_mao_jogador());
             baralho.distribuir_cartas("FLOP", bot.getObjeto_mao_jogador());

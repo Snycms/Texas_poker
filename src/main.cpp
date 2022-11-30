@@ -171,7 +171,7 @@ int main (){
 
                         aposta_anterior = jogador.apostar_fichas(tipo_jogada, aposta_anterior);
                         poker.adiciona_aposta_POT(aposta_anterior);
-                        raise += 1;
+                        qtd_raise_bet += 1;
                     }
                     //Jogador terminou a jogada------------------------------------------
                 }

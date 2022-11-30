@@ -4,6 +4,6 @@
 
 int main()
 {
-    pte::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "Demo");
+    pte::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "Texas Poker");
     return 0;
 }

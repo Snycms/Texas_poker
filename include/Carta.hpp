@@ -13,6 +13,7 @@ class Carta{
     public:
         //Inicia as cartas
         Carta(int valor, std::string nome, std::string naipe, bool rosto_baixo);
+
         ~Carta();
 
         //Vira a carta - Semelhante ao setRosto_baixo

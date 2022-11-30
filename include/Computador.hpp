@@ -8,8 +8,8 @@ class Computador: public Jogador{
         int _dificuldade;
     
     public: 
-        Computador(int dificuldade);
-        
+        Computador();
+
         ~Computador();
         
         //Retorna numero de fichas que o bot vai apostar

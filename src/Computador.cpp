@@ -6,9 +6,26 @@
 #include <cstdlib>
 #include <ctime>
 
-Computador::Computador(int dificuldade){setDificuldade(dificuldade);}
+Computador::Computador(){
+    setDificuldade(0);
 
-Computador::~Computador(){}
+    setEsta_jogando(true);
+    setNome("");
+    setFichas(100);
+    Mao _mao;
+    setNum_vitoria(0);
+    setTipo("");
+
+    std::string listas_nomes_bot[] = {"Enzo", "Helena", "Miguel", "Alice", "Arthur", "Laura", "Gael", "Valentina", "Heitor", "Sophia"};
+
+    unsigned int semente = time(0);
+    srand(semente);
+    int nome_bot = rand() % 10;
+
+    setNome(listas_nomes_bot[nome_bot]);
+
+}
+
 
 //fazer_jogada(int &pot, int qtd_raise_bet, qtd_jogadores_presentes, qtd_nao_jogaram, int aposta_anterior)
 
@@ -21,7 +38,7 @@ int Computador::fazer_jogada(int pot, int &qtd_raise_bet, int aposta_anterior, b
 
         if(jogada == 1){dar_check_ou_fold("DESISTIR"); return 0;}
 
-        else if(jogada == 2){return apostar_fichas("CALL", aposta_anterior,);}
+        else if(jogada == 2){return apostar_fichas("CALL", aposta_anterior);}
 
         else if(jogada == 3){
             qtd_raise_bet += 1;
@@ -51,27 +68,31 @@ int Computador::fazer_jogada(int pot, int &qtd_raise_bet, int aposta_anterior, b
     //qtd_jogadores_presentes = 2, qtd_nao_jogaram = 1
     else if(getDificuldade() == 2){;
 
-        float t = 0.1; //Determina a agressividade do bot (Menor mais agressivo) 
+        float t = 0.01; //Determina a agressividade do bot (Menor mais agressivo) 
         float v = pot / ((qtd_raise_bet+1) * 2 * 1 * aposta_anterior);
 
-        if(jogada == ){dar_check_ou_fold("DESISTIR"); return 0;}
+        if(v < t){dar_check_ou_fold("DESISTIR"); return 0;}
 
         else if(v < 20*t){return apostar_fichas("CALL", aposta_anterior);}
 
         else if(v < 50*t){
             qtd_raise_bet += 1;
+            aumentou_aposta = true;
             return apostar_fichas("AUMENTAR", 2*aposta_anterior);
         }
         else if(v < 100*t){
             qtd_raise_bet += 1;
+            aumentou_aposta = true;
             return apostar_fichas("AUMENTAR", 10*aposta_anterior);
         }
         else if(v < 1000*t){
-        qtd_raise_bet += 1;
-        return apostar_fichas("AUMENTAR", 30*aposta_anterior);
+            qtd_raise_bet += 1;
+            aumentou_aposta = true;
+            return apostar_fichas("AUMENTAR", 30*aposta_anterior);
         }
         else{
             qtd_raise_bet += 1;
+            aumentou_aposta = true;
             return apostar_fichas("APOSTAR TUDO", aposta_anterior);
         }
     }

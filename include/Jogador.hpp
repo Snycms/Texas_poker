@@ -6,7 +6,7 @@
 #include <string>
 
 class Jogador{
-    private:
+    protected:
         bool _esta_jogando;
         std::string _nome;
         int _fichas;
@@ -14,7 +14,6 @@ class Jogador{
         int _num_vitoria;
         //Pode ser Dealer, Small Blind ou Big Blind
         std::string _tipo;
-        bool _apostou_tudo; 
     
     public:
         Jogador();
@@ -38,8 +37,9 @@ class Jogador{
 
         //------------------------------------------------------------
 
-        void limpar_mesa();
-        
+        //Adicionar vitoria numero para o Jogador
+        void adicionar_vitoria(); 
+
         //TESTE GDB ONLINE
         void imprimir_jogador();
         
@@ -63,7 +63,7 @@ class Jogador{
         //Get numero de vitorias do Jogador
         int getNum_vitoria(); 
         //Set numero de vitorias do Jogador
-        void setNum_vitoria(int num_vitoria); 
+        void setNum_vitoria(int num_vitoria);
 
         //Get objeto mao do Jogador
         Mao &getObjeto_mao_jogador();
@@ -74,11 +74,6 @@ class Jogador{
         std::string getTipo();
         //Set tipo de Jogador(Dealer, Small Blind ou Big Blind)
         void setTipo(std::string tipo);
-
-        //Get se o jogador apostou tudo
-        bool getApostou_tudo();
-        //Set apostou tudo do Jogador
-        void setApostou_tudo(bool apostou_tudo);
 };
 
 #endif

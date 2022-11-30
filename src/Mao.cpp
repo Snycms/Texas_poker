@@ -14,7 +14,7 @@ Mao::~Mao(){_mao.clear();}
 
 void Mao::adicionar_carta(Carta carta){_mao.push_back(carta);}
 
-std::string Mao::determinar_valor_mao(){return "Certo";}
+int Mao::determinar_valor_mao(){return 10;}
 
 //POSSIVEIS MAOS-----------------------------------------------------------------------------------------------------
 

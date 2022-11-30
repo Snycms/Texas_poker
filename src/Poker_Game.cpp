@@ -6,7 +6,7 @@
 Poker_Game::Poker_Game(){
     Baralho _baralho;
     Jogador _jogador;
-    Computador _bot(1);
+    Computador _bot;
     int POT = 0; //Premio do vencedor(Soma das apostas)
     int aposta_anterior = 0;
     int _jogador_atual = 0;
@@ -16,7 +16,7 @@ Poker_Game::Poker_Game(){
 Poker_Game::~Poker_Game(){
     _baralho.~Baralho();
     _jogador.~Jogador();
-    _bot.~Jogador();
+    _bot.~Computador();
 }
 
 std::string Poker_Game::showdown(Jogador &jogador, Jogador &bot){
@@ -28,24 +28,27 @@ std::string Poker_Game::showdown(Jogador &jogador, Jogador &bot){
 
     if(mao_jogador > mao_bot){
         jogador.adicionar_fichas(getPOT());
-        setPOT(0);
         return "JOGADOR VENCEU";;
     }
     else if(mao_bot > mao_jogador){
-        bot.adicionar_fichas(poker.getPOT());
-        setPOT(0);
+        bot.adicionar_fichas(getPOT());
         return "BOT VENCEU";
     }
     else{ //mao_jogador == mao_bot 
-        jogador.adicionar_fichas(poker.getPOT()/2);
-        bot.adicionar_fichas(poker.getPOT()/2);
-        setPOT(0);
+        jogador.adicionar_fichas(getPOT()/2);
+        bot.adicionar_fichas(getPOT()/2);
         return "JOGO EMPATADO";
     }
 }
 
-void Poker_Game::limpar_mesa(Baralho &baralho){
-    baralho.resetar_baralho();
+//Limpa tudo e retorna um novo baralho
+Baralho &Poker_Game::limpar_mesa(Baralho &baralho, Jogador &jogador, Computador &bot){
+    baralho.~Baralho();
+    jogador.getVector_mao_jogador().clear();
+    bot.getVector_mao_jogador().clear();
+    setPOT(0);
+    Baralho baralho;
+    return baralho;
 }
 
 //GETTERS E SETTERS ---------------------------------------

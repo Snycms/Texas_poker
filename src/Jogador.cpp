@@ -41,7 +41,6 @@ int Jogador::apostar_fichas(std::string tipo_aposta, int valor_aposta){
         //Verifica se tem fichas sufucientes
         if(valor_aposta >= getFichas()){
             valor_aposta = getFichas();
-            setApostou_tudo(true);
             setFichas(0);
             return valor_aposta;
         }
@@ -55,7 +54,6 @@ int Jogador::apostar_fichas(std::string tipo_aposta, int valor_aposta){
         if(valor_aposta >= getFichas()){
             valor_aposta = getFichas();
             setFichas(0);
-            setApostou_tudo(true);
             return valor_aposta;
         }
         else{
@@ -67,13 +65,12 @@ int Jogador::apostar_fichas(std::string tipo_aposta, int valor_aposta){
     else{
         valor_aposta = getFichas();
         setFichas(0);
-        setApostou_tudo(true);
         return valor_aposta;
     }
 }
 //-------------------------------------------------------------------
 
-void Jogador::limpar_mesa(){}
+void Jogador::adicionar_vitoria(){_num_vitoria += 1;} 
 
 //TESTE GDB ONLINE
 
@@ -104,12 +101,9 @@ Mao &Jogador::getObjeto_mao_jogador(){return _mao;}
 std::vector<Carta> &Jogador::getVector_mao_jogador(){return _mao.getMao();}
 
 int Jogador::getNum_vitoria(){return _num_vitoria;} 
-void Jogador::setNum_vitoria(int num_vitoria){_num_vitoria = num_vitoria;} 
+void Jogador::setNum_vitoria(int num_vitoria){_num_vitoria = num_vitoria;}
 
 std::string Jogador::getTipo(){return _tipo;} 
 void Jogador::setTipo(std::string tipo){_tipo = tipo;}
-
-bool Jogador::getApostou_tudo(){return _apostou_tudo;}
-void Jogador::setApostou_tudo(bool apostou_tudo){_apostou_tudo = apostou_tudo;}
 
 #endif

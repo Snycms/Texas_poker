@@ -20,7 +20,7 @@ class Mao{
     void adicionar_carta(Carta carta); 
 
     //Retorna valor da mao do jogador
-    std::string determinar_valor_mao(); 
+    int determinar_valor_mao(); 
     
     //POSSIVEIS MAOS--------------------------------------------
 

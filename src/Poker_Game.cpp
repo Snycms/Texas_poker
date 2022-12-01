@@ -8,6 +8,7 @@ Poker_Game::Poker_Game(){
     Baralho _baralho;
     Jogador _jogador;
     Computador _bot;
+    Mao _mao;
     int POT = 0; //Premio do vencedor(Soma das apostas)
     int aposta_anterior = 0;
     int _jogador_atual = 0;
@@ -59,6 +60,7 @@ Baralho &Poker_Game::limpar_mesa(Baralho &baralho, Jogador &jogador, Computador 
 Baralho &Poker_Game::getBaralho(){return _baralho;}
 Jogador &Poker_Game::getJogador(){return _jogador;}
 Computador &Poker_Game::getBot(){return _bot;}
+Mao &Poker_Game::getMao(){retrun _mao;}
 
 int Poker_Game::getPOT(){return _POT;}
 void Poker_Game::adiciona_aposta_POT(int valor_aposta){_POT += valor_aposta;}

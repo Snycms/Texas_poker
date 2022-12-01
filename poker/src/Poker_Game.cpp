@@ -28,7 +28,7 @@ std::string Poker_Game::showdown(Jogador &jogador, Jogador &bot){
 
     if(mao_jogador > mao_bot){
         jogador.adicionar_fichas(getPOT());
-        return "JOGADOR VENCEU";;
+        return "JOGADOR VENCEU";
     }
     else if(mao_bot > mao_jogador){
         bot.adicionar_fichas(getPOT());
@@ -47,8 +47,8 @@ Baralho &Poker_Game::limpar_mesa(Baralho &baralho, Jogador &jogador, Computador 
     jogador.getVector_mao_jogador().clear();
     bot.getVector_mao_jogador().clear();
     setPOT(0);
-    Baralho baralho;
-    return baralho;
+    Baralho _baralho;
+    return _baralho;
 }
 
 //GETTERS E SETTERS ---------------------------------------

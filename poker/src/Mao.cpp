@@ -334,7 +334,7 @@ int Mao::straight(){
     }
     else{mao_aux.clear(); cartas_jogador.clear(); mao_mesa.clear(); return 0;}
     //Se ja fez todas iteracoes possiveis e o confere_sequencia menor que 5, jogador nao tem um Straight - Deleta todos vector's e retorna o valor 0
-    if(it == 4 && confere_sequencia < 5){mao_aux.clear(); cartas_jogador.clear(); mao_mesa.clear(); return 0;}
+   mao_aux.clear(); cartas_jogador.clear(); mao_mesa.clear(); return 0;
 }
 
 int Mao::trinca(){
@@ -411,9 +411,10 @@ int Mao::trinca(){
     if(it == 6 && trinca_doisPares_par_cartaAlta.size() > 5){mao_aux.clear(); trinca_doisPares_par_cartaAlta.clear(); cartas_jogador.clear(); return 0;}
 }
 
-int Mao::trinca(){}
 
-int Mao::dois_pares(){}
+int Mao::dois_pares(){
+    
+}
     
 int Mao::par(){}
 

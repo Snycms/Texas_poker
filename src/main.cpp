@@ -20,6 +20,7 @@ int main (){
         Baralho baralho = poker.getBaralho();
         Jogador jogador = poker.getJogador();
         Computador bot = poker.getBot();
+        Mao mao = poker.getMao();
 
         std::string nome;
         std::cout << "Tela Digite o nome" << std::endl;
@@ -108,6 +109,8 @@ int main (){
                         baralho.remover_carta("DAR CARTAS");
                     }
                 }
+                //mao do jogador
+                jogador.getObjeto_mao_jogador().imprimir_mao();
 
                 //FIM PARTE 3-----------------------------------------------------------------------------------------
                 
@@ -200,6 +203,10 @@ int main (){
 
                 //PARTE 5 (FLOP)--------------------------------------------------------------------------------------
                 
+                baralho.distribuir_cartas("FLOP", mao);
+                //mao da mesa
+                mao().imprimir_mao();
+                
                 baralho.distribuir_cartas("FLOP", jogador.getObjeto_mao_jogador());
                 baralho.distribuir_cartas("FLOP", bot.getObjeto_mao_jogador());
                 baralho.remover_carta("FLOP");
@@ -288,6 +295,10 @@ int main (){
 
                 //PARTE 6 (TURN)--------------------------------------------------------------------------------------
 
+                baralho.distribuir_cartas("TURN", mao);
+                //mao da mesa
+                mao().imprimir_mao();
+                
                 baralho.distribuir_cartas("TURN", jogador.getObjeto_mao_jogador());
                 baralho.distribuir_cartas("TURN", bot.getObjeto_mao_jogador());
                 baralho.remover_carta("TURN");
@@ -374,7 +385,11 @@ int main (){
 
 
                 //PARTE 7 (RIVER)-------------------------------------------------------------------------------------
-
+                  
+                baralho.distribuir_cartas("RIVER", mao);
+                //mao da mesa
+                mao().imprimir_mao();
+                
                 baralho.distribuir_cartas("RIVER", jogador.getObjeto_mao_jogador());
                 baralho.distribuir_cartas("RIVER", bot.getObjeto_mao_jogador());
                 baralho.remover_carta("RIVER");

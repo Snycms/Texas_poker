@@ -12,6 +12,7 @@ class Poker_Game{
         Baralho _baralho;
         Jogador _jogador;
         Computador _bot;
+        Mao _mao;
         int _POT; //Premio do vencedor(Soma das apostas)
         int _aposta_anterior;
         int _jogador_atual;
@@ -31,6 +32,7 @@ class Poker_Game{
         Baralho &getBaralho();
         Jogador &getJogador();
         Computador &getBot();
+        Mao &getMao();
 
         int getPOT();
         void adiciona_aposta_POT(int valor_aposta);

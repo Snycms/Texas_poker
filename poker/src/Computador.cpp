@@ -97,7 +97,7 @@ int Computador::fazer_jogada(int pot, int &qtd_raise_bet, int aposta_anterior, b
         }
     }
 
-    else if(getDificuldade() == 3){}
+   //    else if(getDificuldade() == 3){}
 }
 
 //GETTERS E SETTERS ---------------------------------------

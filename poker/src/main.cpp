@@ -1,5 +1,5 @@
 #include "Poker_Game.hpp"
-
+#include <string.h>
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -7,9 +7,11 @@
 //No poker com 2 jogadores o Dealer também é o Small Blind
 
 int main (){
-    std::string opcao_jogo;
+    std::string opcao_jogo = "Novo Jogo";
     std::cout << "tela inicial" << std::endl;
-    std::cin >> opcao_jogo;
+    // std::cin >> opcao_jogo;
+    // std::getline(std::cin, opcao_jogo);
+    // std::cout << opcao_jogo;
 
     Poker_Game poker;
 
@@ -38,6 +40,7 @@ int main (){
             do{
                 poker.setRodada(proxima_rodada);
                 baralho.embaralhar_cartas();
+                // poker.getBaralho().imprimir_baralho();
                 
                 //PARTE 1 (SORTEIO DO DEALER)-------------------------------------------------------------------------
 
@@ -122,6 +125,8 @@ int main (){
                     std::cout << "Escolha a jogada " << std::endl;
                     std::cin >> tipo_jogada;
 
+                    //std::cout << "aa" << std::endl;
+
                     if(tipo_jogada == "CHECK" || tipo_jogada == "FOLD"){
                         jogador.dar_check_ou_fold(tipo_jogada);
                     }
@@ -161,12 +166,15 @@ int main (){
 
                     if(tipo_jogada == "CHECK" || tipo_jogada == "FOLD"){
                         jogador.dar_check_ou_fold(tipo_jogada);
+                        //imprimir
                     }
                     else if(tipo_jogada == "CALL" || tipo_jogada == "APOSTAR" || tipo_jogada == "AUMENTAR" || tipo_jogada == "APOSTAR TUDO"){
                         //Qtd de fichas que vai apostar
                         if(tipo_jogada == "APOSTAR" || tipo_jogada == "AUMENTAR"){
                             std::cout << "Digite numero de fichas" << std::endl;
                             std::cin >> aposta_anterior;
+                            //imprimircacrtas
+                            //imprimir mão
                         }
 
                         aposta_anterior = jogador.apostar_fichas(tipo_jogada, aposta_anterior);

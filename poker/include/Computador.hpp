@@ -9,8 +9,7 @@ class Computador: public Jogador{
     
     public: 
         Computador();
-
-        ~Computador();
+        ~Computador(){};
         
         //Retorna numero de fichas que o bot vai apostar
         int fazer_jogada(int pot, int &qtd_raise_bet, int aposta_anterior, bool &aumentou_aposta);

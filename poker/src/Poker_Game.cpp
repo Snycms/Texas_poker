@@ -2,6 +2,7 @@
 #define POKER_GAME_CPP
 
 #include "Poker_Game.hpp"
+#include "Computador.hpp"
 
 Poker_Game::Poker_Game(){
     Baralho _baralho;
@@ -23,6 +24,8 @@ std::string Poker_Game::showdown(Jogador &jogador, Jogador &bot){
     jogador.virar_cartas();
     bot.virar_cartas();
 
+    // talvez mostrar
+
     int mao_jogador = jogador.getObjeto_mao_jogador().determinar_valor_mao();
     int mao_bot = bot.getObjeto_mao_jogador().determinar_valor_mao();
 
@@ -41,7 +44,7 @@ std::string Poker_Game::showdown(Jogador &jogador, Jogador &bot){
     }
 }
 
-//Limpa tudo e retorna um novo baralho
+//Limpa tudo e retorna um novo baralho.
 Baralho &Poker_Game::limpar_mesa(Baralho &baralho, Jogador &jogador, Computador &bot){
     baralho.~Baralho();
     jogador.getVector_mao_jogador().clear();

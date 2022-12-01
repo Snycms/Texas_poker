@@ -347,7 +347,7 @@ int Mao::trinca(){
 
     int confere_um = 1; //Tenho 1 carta, vou conferir se tenho mais
     int confere_dois = 1; //Tenho 1 carta, vou conferir se tenho mais
-    int it; //iterator
+    int it; //iterator.
 
     for(it = 0; it<6; ++it){
         for(int i=0; i<7; ++i){
@@ -413,17 +413,21 @@ int Mao::trinca(){
 
 
 int Mao::dois_pares(){
-    
-}
+    }
+
     
 int Mao::par(){}
 
-int Mao::carta_alta(){}
+int Mao::carta_alta(){
+    
+}
 
 //-------------------------------------------------------------------------------------------------------------------
 
 
 //TESTE ONLINE GDB
+
+
 void Mao::imprimir_mao(){
     std::cout << "Sua mao: " << std::endl;
     for(std::vector<Carta>::iterator it = _mao.begin(); it != _mao.end(); ++it){

@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++11 -g -Wall
 
 # folders
 INCLUDE_FOLDER = ./include/
-BIN_FOLDER = ./
+BIN_FOLDER = ./bin/
 OBJ_FOLDER = ./build/
 SRC_FOLDER = ./src/
 
@@ -19,7 +19,7 @@ $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $@ -I$(INCLUDE_FOLDER)
 
 all: $(OBJ)
-	$(CC) $(CXXFLAGS) -o $(BIN_FOLDER)$(TARGET) ./obj/memlog.o $(OBJ) 
+	$(CC) $(CXXFLAGS) -o $(BIN_FOLDER)$(TARGET) $(OBJ)
 
 clean:
 	@rm -rf $(OBJ_FOLDER)* $(BIN_FOLDER)*

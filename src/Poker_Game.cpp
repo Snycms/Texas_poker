@@ -29,7 +29,10 @@ std::string Poker_Game::showdown(Jogador &jogador, Jogador &bot){
 
     int mao_jogador = jogador.getObjeto_mao_jogador().determinar_valor_mao();
     int mao_bot = bot.getObjeto_mao_jogador().determinar_valor_mao();
-
+    
+    jogador.getObjeto_mao_jogador().imprimir_mao();
+    bot.getObjeto_mao_jogador(),imprimir_mao();
+    
     if(mao_jogador > mao_bot){
         jogador.adicionar_fichas(getPOT());
         return "JOGADOR VENCEU";
